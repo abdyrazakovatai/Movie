@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+
+<h1>Admin Panel - Movies</h1>
+
+
+<form action="/users/saveMovie" method="POST">
+    <!--    <input type="hidden" name="cinemaId" th:value="${cinemaId}" />-->
+    <button type="submit">Add New Movie</button>
+</form>
+
+<label for="movieName">Movie Name:</label>
+<input type="text" id="movieName" name="movieName" required><br>
+
+<label for="image">Image:</label>
+<input type="text" id="image" name="image" required/><br>
+
+<label for="genre">Genre:</label>
+<select id="genre" name="genre" required>
+    <option value="ACTION">Action</option>
+    <option value="ADVENTURE">Adventure</option>
+    <option value="COMEDY">Comedy</option>
+    <option value="DRAMA">Drama</option>
+    <option value="HORROR">Horror</option>
+    <option value="SCIENCE_FICTION">Science Fiction</option>
+    <option value="FANTASY">Fantasy</option>
+    <option value="ROMANCE">Romance</option>
+    <option value="THRILLER">Thriller</option>
+    <option value="DOCUMENTARY">Documentary</option>
+</select><br>
+
+<label for="duration">Duration (in minutes):</label>
+<input type="number" id="duration" name="duration" required/><br>
+
+<label for="releaseDate">Release Date:</label>
+<input type="date" id="releaseDate" name="releaseDate" required/><br>
+
+<label for="ageRating">Age Rating:</label>
+<input type="number" id="ageRating" name="ageRating" required/><br>
+
+<label for="thrillerUrl">Thriller URL:</label>
+<input type="url" id="thrillerUrl" name="thrillerUrl" required/><br>
+
+<!-- Если в списке фильмов есть данные, отображаем их -->
+<div th:if="${movies != null}">
+    <h2>Movies List</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Movie Name</th>
+            <th>Movie Image</th>
+            <th>Genre</th>
+            <th>Duration</th>
+            <th>Release Date</th>
+            <th>Age Rating</th>
+            <th>Thriller URL</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="movie : ${movies}">
+            <td th:text="${movie.movieName}"></td>
+            <td>
+                <img th:src="${movie.image}" alt="Movie Image" style="width: 100px; height: auto;"/>
+            </td>
+            <td th:text="${movie.genre}"></td>
+            <td th:text="${movie.duration}"></td>
+            <td th:text="${movie.releaseDate}"></td>
+            <td th:text="${movie.ageRating}"></td>
+            <td>
+                <a th:href="${movie.thrillerUrl}" target="_blank">Watch Trailer</a>
+            </td>
+            <td>
+                <a th:href="@{/adminPage/edit/{id}(id=${movie.id})}">Edit</a>
+            </td>
+        </tr>
+
+
+        </tbody>
+    </table>
+</div>
+
+<!-- Если фильмов нет -->
+<div th:unless="${movies != null}">
+    <p>No movies found.</p>
+</div>
+
+<!--<input type="hidden" name="cinemaId" th:value="${cinemaId}" />-->
+
+</body>
+</html>

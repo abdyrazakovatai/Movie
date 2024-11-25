@@ -1,0 +1,207 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Showtime Page</title>-->
+<!--    -->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Add Showtime</h1>-->
+<!--<form action="/movies/saveShowTime" method="post">-->
+<!--&lt;!&ndash;    &lt;!&ndash; Cinema &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;    <label for="cinemas">Cinema</label>&ndash;&gt;-->
+<!--&lt;!&ndash;    <select id="cinemas" name="cinemaId" required>&ndash;&gt;-->
+<!--&lt;!&ndash;        <th:block th:each="cinema : ${cinemas}">`&ndash;&gt;-->
+<!--&lt;!&ndash;            <option th:value="${cinema.id}" th:text="${cinema.name}"></option>&ndash;&gt;-->
+<!--&lt;!&ndash;        </th:block>&ndash;&gt;-->
+<!--&lt;!&ndash;    </select>&ndash;&gt;-->
+
+<!--    &lt;!&ndash; Movie &ndash;&gt;-->
+<!--    <label for="movies">Movie</label>-->
+<!--    <select id="movies" name="movieId" required>-->
+<!--        <th:block th:each="movie : ${movies}">-->
+<!--            <option th:value="${movie.id}" th:text="${movie.movieName}"></option>-->
+<!--        </th:block>-->
+<!--    </select>-->
+
+<!--    <label for="halls">Hall</label>-->
+<!--    <select id="halls" name="hallId" required>-->
+<!--        <th:block th:each="hall : ${halls}">-->
+<!--            <option th:value="${hall.id}" th:text="${hall.name + ' (' + (hall.cinema != null ? hall.cinema.name : 'No Cinema') + ')'}"></option>-->
+<!--            &lt;!&ndash;            <option th:value="${hall.id}" th:text="${hall.name + }"></option>&ndash;&gt;-->
+<!--        </th:block>-->
+<!--    </select>-->
+
+<!--&lt;!&ndash;     Hall Name &ndash;&gt;-->
+<!--&lt;!&ndash;    <label for="name">Hall Name</label>&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="text" id="name" name="name" placeholder="Enter Hall Name" required>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    &lt;!&ndash; Seat Count &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;    <label for="seatCount">Seat Count</label>&ndash;&gt;-->
+<!--&lt;!&ndash;    <input id="seatCount" type="number" name="seatCount" placeholder="Enter number of seats" required>&ndash;&gt;-->
+
+<!--    &lt;!&ndash; Start Time &ndash;&gt;-->
+<!--    <label for="startTime">Start Time</label>-->
+<!--    <input type="datetime-local" id="startTime" name="startTime" required>-->
+
+<!--    &lt;!&ndash; Price &ndash;&gt;-->
+<!--    <label for="price">Price</label>-->
+<!--    <input type="number" step="0.01" id="price" name="price" placeholder="Enter Price" required>-->
+
+<!--    <button type="submit">Save Showtime</button>-->
+<!--</form>-->
+
+
+<!--&lt;!&ndash; Hall Name &ndash;&gt;-->
+<!--&lt;!&ndash;    <label for="name">Hall Name</label>&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="text" id="name" name="name" placeholder="Enter Hall Name" required>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    &lt;!&ndash; Seat Count &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;    <label for="seatCount">Seat Count</label>&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="number" id="seatCount" name="seatCount" placeholder="Enter number of seats" required>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    &lt;!&ndash; Start Time &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;    <label for="startTime">Start Time</label>&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="datetime-local" id="startTime" name="startTime" required>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    &lt;!&ndash; Price &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;    <label for="price">Price</label>&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="number" step="0.01" id="price" name="price" placeholder="Enter Price" required>&ndash;&gt;-->
+<!--&lt;!&ndash;    <label for="hallName">Hall Name</label>&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="text" id="hallName" name="hallName" placeholder="Enter Hall Name" required>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    &lt;!&ndash; Seat Count Field &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;    <label for="seatCount">Seat Count</label>&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="number" id="seatCount" name="seatCount" placeholder="Enter number of seats" required>&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;    &lt;!&ndash; Start Time &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;    <label for="startTime">Start Time</label>&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="time" id="startTime" name="startTime" required>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    &lt;!&ndash; Price &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;    <label for="price">Price</label>&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="number" step="0.01" id="price" name="price" placeholder="Enter Price" required>&ndash;&gt;-->
+
+<!--&lt;!&ndash; Submit Button &ndash;&gt;-->
+<!--&lt;!&ndash;    <button type="submit">Save Showtime</button>&ndash;&gt;-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Showtime Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin: 50px auto;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #555;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .note {
+            font-size: 14px;
+            color: #666;
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Add Showtime</h1>
+    <form action="/movies/saveShowTime" method="post">
+        <!-- Movie -->
+        <label for="movies">Movie</label>
+        <select id="movies" name="movieId" required>
+            <th:block th:each="movie : ${movies}">
+                <option th:value="${movie.id}" th:text="${movie.movieName}"></option>
+            </th:block>
+        </select>
+
+        <!-- Hall -->
+        <label for="halls">Hall</label>
+        <select id="halls" name="hallId" required>
+            <th:block th:each="hall : ${halls}">
+                <option th:value="${hall.id}"
+                        th:text="${hall.name + ' (' + (hall.cinema != null ? hall.cinema.name : 'No Cinema') + ')'}">
+                </option>
+            </th:block>
+        </select>
+
+        <!-- Start Time -->
+        <label for="startTime">Start Time</label>
+        <input type="datetime-local" id="startTime" name="startTime" required>
+
+        <!-- Price -->
+        <label for="price">Price</label>
+        <input type="number" step="0.01" id="price" name="price" placeholder="Enter Price" required>
+
+        <!-- Submit Button -->
+        <button type="submit">Save Showtime</button>
+        <p class="note">Ensure all fields are filled before submitting.</p>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+-- Форма добавления нового фильма -->
+<div class="form-container">
+    <h2>Add New Movie</h2>
+<form action="/movies/save" method="POST">
+
+<!--            <label for="cinemaId">Select Cinema:</label>-->
+<!--            <select id="cinemaId" name="cinemaId" required>-->
+<!--                <option value="" disabled>Select a cinema</option>-->
+<!--                <option th:each="cinema : ${cinemas}" th:value="${cinema.id }" th:text="${cinema.name}"></option>-->
+<!--            </select><br><br>-->
+
+            <label for="movieName">Название Фильма:</label>
+            <input type="text" id="movieName" name="movieName" required><br>
+
+            <label for="image">Image:</label>
+            <input type="url" id="image" name="image" required/><br>
+
+            <label for="genre">Genre:</label>
+            <select id="genre" name="genre" required>
+                <option value="ACTION">Action</option>
+                <option value="ADVENTURE">Adventure</option>
+                <option value="COMEDY">Comedy</option>
+                <option value="DRAMA">Drama</option>
+                <option value="HORROR">Horror</option>
+                <option value="SCIENCE_FICTION">Science Fiction</option>
+                <option value="FANTASY">Fantasy</option>
+                <option value="ROMANCE">Romance</option>
+                <option value="THRILLER">Thriller</option>
+                <option value="DOCUMENTARY">Documentary</option>
+            </select><br>
+
+            <label for="duration">Duration (in minutes):</label>
+            <input type="number" id="duration" name="duration" required/><br>
+
+            <label for="releaseDate">Release Date:</label>
+            <input type="date" id="releaseDate" name="releaseDate" required/><br>
+
+            <label for="ageRating">Age Rating:</label>
+            <input type="number" id="ageRating" name="ageRating" required/><br>
+
+            <label for="thrillerUrl">Thriller URL:</label>
+            <input type="url" id="thrillerUrl" name="thrillerUrl" required/><br>
+
+            <h3>Movie Info</h3>
+
+            <label for="director">Director:</label>
+            <input type="text" id="director" name="director" required><br>
+
+            <label for="actor">Actor:</label>
+            <input type="text" id="actor" name="actor" required><br>
+
+            <label for="country">Country:</label>
+            <input type="text" id="country" name="country" required><br>
+
+            <label for="language">Language:</label>
+            <input type="text" id="language" name="language" required><br>
+
+            <label for="description">Description:</label>
+            <input type="text" id="description" name="description" required><br>
+
+            <button type="submit">Add Movie</button>
+</form>
+</div>
+</body>
+</html>

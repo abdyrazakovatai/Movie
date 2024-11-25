@@ -1,0 +1,632 @@
+<!--&lt;!&ndash;<!DOCTYPE html>&ndash;&gt;-->
+<!--&lt;!&ndash;<html lang="en">&ndash;&gt;-->
+<!--&lt;!&ndash;<head>&ndash;&gt;-->
+<!--&lt;!&ndash;    <meta charset="UTF-8">&ndash;&gt;-->
+<!--&lt;!&ndash;    <meta name="viewport" content="width=device-width, initial-scale=1.0">&ndash;&gt;-->
+<!--&lt;!&ndash;    <title>Cinema Details</title>&ndash;&gt;-->
+<!--&lt;!&ndash;    <link rel="stylesheet" href="styles.css">&ndash;&gt;-->
+<!--&lt;!&ndash;</head>&ndash;&gt;-->
+<!--&lt;!&ndash;<body>&ndash;&gt;-->
+
+<!--&lt;!&ndash;<style>&ndash;&gt;-->
+<!--&lt;!&ndash;    /* Фон для всей страницы */&ndash;&gt;-->
+<!--&lt;!&ndash;    body {&ndash;&gt;-->
+<!--&lt;!&ndash;        background-image: url('https://pluggedin.ru/images/upload/1685599617.jpeg');&ndash;&gt;-->
+<!--&lt;!&ndash;        background-size: cover;&ndash;&gt;-->
+<!--&lt;!&ndash;        background-position: center;&ndash;&gt;-->
+<!--&lt;!&ndash;        margin: 0;&ndash;&gt;-->
+<!--&lt;!&ndash;        font-family: Arial, sans-serif;&ndash;&gt;-->
+<!--&lt;!&ndash;        color: #fff;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    /* Шапка */&ndash;&gt;-->
+<!--&lt;!&ndash;    header {&ndash;&gt;-->
+<!--&lt;!&ndash;        display: flex;&ndash;&gt;-->
+<!--&lt;!&ndash;        justify-content: space-between;&ndash;&gt;-->
+<!--&lt;!&ndash;        align-items: center;&ndash;&gt;-->
+<!--&lt;!&ndash;        background: rgba(0, 0, 0, 0.8);&ndash;&gt;-->
+<!--&lt;!&ndash;        padding: 10px 20px;&ndash;&gt;-->
+<!--&lt;!&ndash;        position: fixed;&ndash;&gt;-->
+<!--&lt;!&ndash;        top: 0;&ndash;&gt;-->
+<!--&lt;!&ndash;        left: 0;&ndash;&gt;-->
+<!--&lt;!&ndash;        right: 0;&ndash;&gt;-->
+<!--&lt;!&ndash;        z-index: 1000;&ndash;&gt;-->
+<!--&lt;!&ndash;        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    /* Логотип */&ndash;&gt;-->
+<!--&lt;!&ndash;    .logo {&ndash;&gt;-->
+<!--&lt;!&ndash;        font-size: 20px;&ndash;&gt;-->
+<!--&lt;!&ndash;        font-weight: bold;&ndash;&gt;-->
+<!--&lt;!&ndash;        text-decoration: none;&ndash;&gt;-->
+<!--&lt;!&ndash;        color: #f1c40f;&ndash;&gt;-->
+<!--&lt;!&ndash;        text-transform: uppercase;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    /* Поисковик и кнопка Войти */&ndash;&gt;-->
+<!--&lt;!&ndash;    .right-section {&ndash;&gt;-->
+<!--&lt;!&ndash;        display: flex;&ndash;&gt;-->
+<!--&lt;!&ndash;        align-items: center;&ndash;&gt;-->
+<!--&lt;!&ndash;        gap: 20px;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    .search-bar {&ndash;&gt;-->
+<!--&lt;!&ndash;        display: flex;&ndash;&gt;-->
+<!--&lt;!&ndash;        align-items: center;&ndash;&gt;-->
+<!--&lt;!&ndash;        gap: 10px;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    .search-bar input {&ndash;&gt;-->
+<!--&lt;!&ndash;        padding: 10px;&ndash;&gt;-->
+<!--&lt;!&ndash;        border: none;&ndash;&gt;-->
+<!--&lt;!&ndash;        border-radius: 20px;&ndash;&gt;-->
+<!--&lt;!&ndash;        font-size: 16px;&ndash;&gt;-->
+<!--&lt;!&ndash;        width: 200px;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    .search-bar button {&ndash;&gt;-->
+<!--&lt;!&ndash;        padding: 10px 20px;&ndash;&gt;-->
+<!--&lt;!&ndash;        background: linear-gradient(45deg, #f39c12, #af1bdc);&ndash;&gt;-->
+<!--&lt;!&ndash;        color: #fff;&ndash;&gt;-->
+<!--&lt;!&ndash;        border: none;&ndash;&gt;-->
+<!--&lt;!&ndash;        border-radius: 20px;&ndash;&gt;-->
+<!--&lt;!&ndash;        cursor: pointer;&ndash;&gt;-->
+<!--&lt;!&ndash;        font-weight: bold;&ndash;&gt;-->
+<!--&lt;!&ndash;        transition: all 0.3s ease;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    .search-bar button:hover {&ndash;&gt;-->
+<!--&lt;!&ndash;        background: linear-gradient(45deg, #e4d313, #fd004d);&ndash;&gt;-->
+<!--&lt;!&ndash;        transform: scale(1.1);&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    .login-button {&ndash;&gt;-->
+<!--&lt;!&ndash;        padding: 10px 20px;&ndash;&gt;-->
+<!--&lt;!&ndash;        background: linear-gradient(45deg, #aa1885, #3d1ae3);&ndash;&gt;-->
+<!--&lt;!&ndash;        color: #fff;&ndash;&gt;-->
+<!--&lt;!&ndash;        border: none;&ndash;&gt;-->
+<!--&lt;!&ndash;        border-radius: 20px;&ndash;&gt;-->
+<!--&lt;!&ndash;        font-size: 16px;&ndash;&gt;-->
+<!--&lt;!&ndash;        text-decoration: none;&ndash;&gt;-->
+<!--&lt;!&ndash;        transition: all 0.3s ease;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    .login-button:hover {&ndash;&gt;-->
+<!--&lt;!&ndash;        background: linear-gradient(45deg, #f1e31c, #63b331);&ndash;&gt;-->
+<!--&lt;!&ndash;        transform: scale(1.1);&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    /* Карточки фильмов */&ndash;&gt;-->
+<!--&lt;!&ndash;    .movie-cards {&ndash;&gt;-->
+<!--&lt;!&ndash;        display: flex;&ndash;&gt;-->
+<!--&lt;!&ndash;        flex-wrap: wrap;&ndash;&gt;-->
+<!--&lt;!&ndash;        justify-content: center;&ndash;&gt;-->
+<!--&lt;!&ndash;        gap: 20px;&ndash;&gt;-->
+<!--&lt;!&ndash;        padding: 20px;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    .movie-card {&ndash;&gt;-->
+<!--&lt;!&ndash;        background: rgba(0, 0, 0, 0.8);&ndash;&gt;-->
+<!--&lt;!&ndash;        border-radius: 10px;&ndash;&gt;-->
+<!--&lt;!&ndash;        width: 250px;&ndash;&gt;-->
+<!--&lt;!&ndash;        padding: 15px;&ndash;&gt;-->
+<!--&lt;!&ndash;        text-align: center;&ndash;&gt;-->
+<!--&lt;!&ndash;        color: #fff;&ndash;&gt;-->
+<!--&lt;!&ndash;        font-size: 14px;&ndash;&gt;-->
+<!--&lt;!&ndash;        transition: transform 0.2s;&ndash;&gt;-->
+<!--&lt;!&ndash;        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    .movie-card:hover {&ndash;&gt;-->
+<!--&lt;!&ndash;        transform: scale(1.05);&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    .movie-card img {&ndash;&gt;-->
+<!--&lt;!&ndash;        width: 100%;&ndash;&gt;-->
+<!--&lt;!&ndash;        height: auto;&ndash;&gt;-->
+<!--&lt;!&ndash;        border-radius: 5px;&ndash;&gt;-->
+<!--&lt;!&ndash;        margin-bottom: 10px;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    .movie-card h3 {&ndash;&gt;-->
+<!--&lt;!&ndash;        font-size: 18px;&ndash;&gt;-->
+<!--&lt;!&ndash;        margin-bottom: 5px;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    .movie-card p {&ndash;&gt;-->
+<!--&lt;!&ndash;        font-size: 14px;&ndash;&gt;-->
+<!--&lt;!&ndash;        line-height: 1.5;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    .movie-card a {&ndash;&gt;-->
+<!--&lt;!&ndash;        display: inline-block;&ndash;&gt;-->
+<!--&lt;!&ndash;        margin-top: 10px;&ndash;&gt;-->
+<!--&lt;!&ndash;        padding: 5px 10px;&ndash;&gt;-->
+<!--&lt;!&ndash;        background: linear-gradient(45deg, #000000, #000000);&ndash;&gt;-->
+<!--&lt;!&ndash;        color: #fff;&ndash;&gt;-->
+<!--&lt;!&ndash;        text-decoration: none;&ndash;&gt;-->
+<!--&lt;!&ndash;        font-size: 12px;&ndash;&gt;-->
+<!--&lt;!&ndash;        border-radius: 5px;&ndash;&gt;-->
+<!--&lt;!&ndash;        transition: background 0.3s;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    .movie-card a:hover {&ndash;&gt;-->
+<!--&lt;!&ndash;        background: linear-gradient(45deg, #f1c40f, #f39c12);&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    /* Заголовки */&ndash;&gt;-->
+<!--&lt;!&ndash;    h1, h2, h3, h4 {&ndash;&gt;-->
+<!--&lt;!&ndash;        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    h1 {&ndash;&gt;-->
+<!--&lt;!&ndash;        margin-bottom: 20px;&ndash;&gt;-->
+<!--&lt;!&ndash;        font-size: 48px;&ndash;&gt;-->
+<!--&lt;!&ndash;        text-align: center;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    h2 {&ndash;&gt;-->
+<!--&lt;!&ndash;        font-size: 32px;&ndash;&gt;-->
+<!--&lt;!&ndash;        margin-bottom: 10px;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    h3 {&ndash;&gt;-->
+<!--&lt;!&ndash;        font-size: 24px;&ndash;&gt;-->
+<!--&lt;!&ndash;        margin-bottom: 5px;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    h4 {&ndash;&gt;-->
+<!--&lt;!&ndash;        font-size: 18px;&ndash;&gt;-->
+<!--&lt;!&ndash;        margin-bottom: 5px;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    /* Основной контент */&ndash;&gt;-->
+<!--&lt;!&ndash;    .content {&ndash;&gt;-->
+<!--&lt;!&ndash;        margin: 20px auto;&ndash;&gt;-->
+<!--&lt;!&ndash;        max-width: 1200px;&ndash;&gt;-->
+<!--&lt;!&ndash;        padding: 20px;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    /* Footer */&ndash;&gt;-->
+<!--&lt;!&ndash;    footer {&ndash;&gt;-->
+<!--&lt;!&ndash;        background: rgba(0, 0, 0, 0.8);&ndash;&gt;-->
+<!--&lt;!&ndash;        padding: 20px 0;&ndash;&gt;-->
+<!--&lt;!&ndash;        text-align: center;&ndash;&gt;-->
+<!--&lt;!&ndash;        color: #aaa;&ndash;&gt;-->
+<!--&lt;!&ndash;        position: fixed;&ndash;&gt;-->
+<!--&lt;!&ndash;        bottom: 0;&ndash;&gt;-->
+<!--&lt;!&ndash;        width: 100%;&ndash;&gt;-->
+<!--&lt;!&ndash;        font-size: 14px;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;</style>&ndash;&gt;-->
+<!--&lt;!&ndash;<div class="cinema-details">&ndash;&gt;-->
+<!--&lt;!&ndash;    <h1 th:text="${cinema.name}">Cinema Name</h1>&ndash;&gt;-->
+
+<!--    &lt;!&ndash; Список залов &ndash;&gt;-->
+<!--    <div class="halls">-->
+<!--        <h2>Halls:</h2>-->
+<!--&lt;!&ndash;        <ul>&ndash;&gt;-->
+<!--            <li th:each="hall : ${cinema.halls}">-->
+<!--                <h3 th:text="'Hall: ' + ${hall.name}">Hall Name</h3>-->
+
+<!--                &lt;!&ndash; Список сеансов &ndash;&gt;-->
+
+<!--                &lt;!&ndash;                <ul>&ndash;&gt;-->
+<!--            <li th:each="movie : ${cinema.movies}">-->
+<!--             <li> th:each="movie : ${cinema.movies}">-->
+<!--                <p th:text="'Image: ' + ${movie.showTimes}">Showtime Time</p>-->
+<!--                <h3 th:text="'Movie Name: ' + ${movie.movieName}">Movie Name</h3>-->
+<!--                <p th:text="'Genre: ' + ${movie.genre}">Genre</p>-->
+<!--                <p th:text="'Duration: ' + ${movie.duration}">Duration</p>-->
+<!--                <p th:text="'Release Date: ' + ${movie.releaseDate}">Release Date</p>-->
+<!--                <p th:url="'Thriller : ' + ${movie.thrillerUrl}">Thriller Url</p>-->
+<!--                <p th:text="'Age Rating: ' + ${movie.ageRating}">Age Rating</p>-->
+
+<!--                &lt;!&ndash; Данные фильма &ndash;&gt;-->
+
+<!--                <h4>Movie Info:</h4>-->
+
+<!--                <p th:text="'Movie Direactor: ' + ${movie.movieInfo.director}">Movie Info</p>-->
+<!--                <p th:text="'Actors: ' + ${movie.movieInfo.actor}">Movie Info</p>-->
+<!--                <p th:text="'Movie Country: ' + ${movie.movieInfo.country}">Movie Info</p>-->
+<!--                <p th:text="'Movie Language: ' + ${movie.movieInfo.language}">Movie Info</p>-->
+<!--                <p th:text="'Description: ' + ${movie.movieInfo.description}">Movie Info</p>-->
+<!--            </li>-->
+<!--            </li>-->
+<!--&lt;!&ndash;        </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;        </li>&ndash;&gt;-->
+<!--&lt;!&ndash;        </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--&lt;!&ndash;</body>&ndash;&gt;-->
+<!--&lt;!&ndash;</html>&ndash;&gt;-->
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Movie Cards</title>-->
+<!--    <link rel="stylesheet" href="styles.css">-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<style>-->
+<!--    /* Фон для всей страницы */-->
+<!--    body {-->
+<!--        background-image: url('https://pluggedin.ru/images/upload/1685599617.jpeg');-->
+<!--        background-size: cover;-->
+<!--        background-position: center;-->
+<!--        margin: 0;-->
+<!--        font-family: Arial, sans-serif;-->
+<!--        color: #fff;-->
+<!--    }-->
+
+<!--    /* Шапка */-->
+<!--    header {-->
+<!--        display: flex;-->
+<!--        justify-content: center;-->
+<!--        align-items: center;-->
+<!--        background: rgba(0, 0, 0, 0.8);-->
+<!--        padding: 20px 0;-->
+<!--        position: fixed;-->
+<!--        top: 0;-->
+<!--        left: 0;-->
+<!--        right: 0;-->
+<!--        z-index: 1000;-->
+<!--        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);-->
+<!--    }-->
+
+<!--    header h1 {-->
+<!--        font-size: 24px;-->
+<!--        color: #f1c40f;-->
+<!--        text-transform: uppercase;-->
+<!--    }-->
+
+<!--    /* Карточки фильмов */-->
+<!--    .movie-cards {-->
+<!--        display: flex;-->
+<!--        flex-wrap: wrap;-->
+<!--        justify-content: center;-->
+<!--        gap: 20px;-->
+<!--        padding: 100px 20px 20px; /* Отступ сверху для шапки */-->
+<!--    }-->
+
+<!--    .movie-card {-->
+<!--        background: rgba(0, 0, 0, 0.9);-->
+<!--        border-radius: 10px;-->
+<!--        width: 300px;-->
+<!--        overflow: hidden;-->
+<!--        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);-->
+<!--        transition: transform 0.2s ease, box-shadow 0.3s ease;-->
+<!--    }-->
+
+<!--    .movie-card:hover {-->
+<!--        transform: scale(1.05);-->
+<!--        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);-->
+<!--    }-->
+
+<!--    .movie-card img {-->
+<!--        width: 100%;-->
+<!--        height: 400px;-->
+<!--        object-fit: cover;-->
+<!--    }-->
+
+<!--    .movie-card .info {-->
+<!--        padding: 15px;-->
+<!--        text-align: center;-->
+<!--    }-->
+
+<!--    .movie-card .info h3 {-->
+<!--        font-size: 20px;-->
+<!--        margin: 10px 0;-->
+<!--        color: #f1c40f;-->
+<!--    }-->
+
+<!--    .movie-card .info p {-->
+<!--        font-size: 14px;-->
+<!--        margin: 5px 0;-->
+<!--        color: #aaa;-->
+<!--    }-->
+
+<!--    .movie-card .info .btn {-->
+<!--        display: inline-block;-->
+<!--        margin-top: 10px;-->
+<!--        padding: 10px 20px;-->
+<!--        background: linear-gradient(45deg, #f39c12, #e74c3c);-->
+<!--        color: #fff;-->
+<!--        text-decoration: none;-->
+<!--        font-size: 14px;-->
+<!--        border-radius: 20px;-->
+<!--        transition: background 0.3s ease, transform 0.2s ease;-->
+<!--    }-->
+
+<!--    .movie-card .info .btn:hover {-->
+<!--        background: linear-gradient(45deg, #e67e22, #c0392b);-->
+<!--        transform: translateY(-2px);-->
+<!--    }-->
+
+<!--</style>-->
+
+<!--<header>-->
+<!--    <h1>Movie Catalog</h1>-->
+<!--</header>-->
+
+<!--<div class="movie-cards">-->
+<!--    &lt;!&ndash; Карточка фильма &ndash;&gt;-->
+<!--    <div class="movie-card">-->
+<!--        <img src="https://via.placeholder.com/300x400" alt="Movie Poster">-->
+<!--        <div class="info">-->
+<!--            <h3>Movie Name</h3>-->
+<!--            <p>Genre: Action</p>-->
+<!--            <p>Duration: 120 min</p>-->
+<!--            <p>Release Date: 2024-11-01</p>-->
+<!--            <a href="#" class="btn">View Details</a>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Еще одна карточка &ndash;&gt;-->
+<!--    <div class="movie-card">-->
+<!--        <img src="https://via.placeholder.com/300x400" alt="Movie Poster">-->
+<!--        <div class="info">-->
+<!--            <h3>Another Movie</h3>-->
+<!--            <p>Genre: Comedy</p>-->
+<!--            <p>Duration: 90 min</p>-->
+<!--            <p>Release Date: 2024-10-15</p>-->
+<!--            <a href="#" class="btn">View Details</a>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Пример динамической генерации &ndash;&gt;-->
+<!--    <div class="movie-card" th:each="movie : ${cinema.movies}">-->
+<!--        <img th:src="${movie.image}" alt="Movie Poster">-->
+<!--        <div class="info">-->
+<!--            <h3 th:text="${movie.movieName}">Movie Name</h3>-->
+<!--            <p th:text="'Genre: ' + ${movie.genre}">Genre</p>-->
+<!--            <p th:text="'Duration: ' + ${movie.duration} + ' min'">Duration</p>-->
+<!--            <p th:text="'Release Date: ' + ${movie.releaseDate}">Release Date</p>-->
+<!--            <a th:href="${movie.detailsUrl}" class="btn">View Details</a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--</body>-->
+<!--</html>-->
+<!--&lt;!&ndash;&ndash;&gt;-->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Catalog</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<style>
+    /*!* Фон для всей страницы *!*/
+    /*body {*/
+    /*    background-image: url('https://pluggedin.ru/images/upload/1685599617.jpeg');*/
+    /*    background-size: cover;*/
+    /*    background-position: center;*/
+    /*    margin: 0;*/
+    /*    font-family: Arial, sans-serif;*/
+    /*    color: #fff;*/
+    /*}*/
+
+    /*!* Шапка *!*/
+    /*header {*/
+    /*    display: flex;*/
+    /*    justify-content: center;*/
+    /*    align-items: center;*/
+    /*    background: rgba(0, 0, 0, 0.8);*/
+    /*    padding: 20px 0;*/
+    /*    position: fixed;*/
+    /*    top: 0;*/
+    /*    left: 0;*/
+    /*    right: 0;*/
+    /*    z-index: 1000;*/
+    /*    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);*/
+    /*}*/
+
+    /*header h1 {*/
+    /*    font-size: 24px;*/
+    /*    color: #f1c40f;*/
+    /*    text-transform: uppercase;*/
+    /*}*/
+
+    /*!* Карточки фильмов *!*/
+    /*.movie-cards {*/
+    /*    display: flex;*/
+    /*    flex-wrap: wrap;*/
+    /*    justify-content: center;*/
+    /*    gap: 20px;*/
+    /*    padding: 100px 20px 20px; !* Отступ сверху для шапки *!*/
+    /*}*/
+
+    /*.movie-card {*/
+    /*    background: rgba(0, 0, 0, 0.9);*/
+    /*    border-radius: 10px;*/
+    /*    width: 300px;*/
+    /*    overflow: hidden;*/
+    /*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);*/
+    /*    transition: transform 0.2s ease, box-shadow 0.3s ease;*/
+    /*}*/
+
+    /*.movie-card:hover {*/
+    /*    transform: scale(1.05);*/
+    /*    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);*/
+    /*}*/
+
+    /*.movie-card img {*/
+    /*    width: 100%;*/
+    /*    height: 400px;*/
+    /*    object-fit: cover;*/
+    /*}*/
+
+    /*.movie-card .info {*/
+    /*    padding: 15px;*/
+    /*    text-align: center;*/
+    /*}*/
+
+    /*.movie-card .info h3 {*/
+    /*    font-size: 20px;*/
+    /*    margin: 10px 0;*/
+    /*    color: #f1c40f;*/
+    /*}*/
+
+    /*.movie-card .info p {*/
+    /*    font-size: 14px;*/
+    /*    margin: 5px 0;*/
+    /*    color: #aaa;*/
+    /*}*/
+
+    /*.movie-card .info .btn {*/
+    /*    display: inline-block;*/
+    /*    margin-top: 10px;*/
+    /*    padding: 10px 20px;*/
+    /*    background: linear-gradient(45deg, #f39c12, #e74c3c);*/
+    /*    color: #fff;*/
+    /*    text-decoration: none;*/
+    /*    font-size: 14px;*/
+    /*    border-radius: 20px;*/
+    /*    transition: background 0.3s ease, transform 0.2s ease;*/
+    /*}*/
+
+    /*.movie-card .info .btn:hover {*/
+    /*    background: linear-gradient(45deg, #e67e22, #c0392b);*/
+    /*    transform: translateY(-2px);*/
+    /*}*/
+
+
+    .halls {
+        margin: 20px;
+        font-family: Arial, sans-serif;
+    }
+
+    .hall-card {
+        margin-bottom: 15px;
+        padding: 10px;
+        background-color: #f4faff;
+        border-radius: 5px;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .hall-name {
+        font-size: 1.5em;
+        font-weight: bold;
+        margin-bottom: 10px;
+        background-color: #0078d7;
+        color: white;
+        padding: 5px;
+        border-radius: 3px;
+    }
+
+    .showtime-card {
+        display: flex;
+        justify-content: space-between;
+        padding: 5px;
+        background-color: white;
+        margin-bottom: 5px;
+        border-radius: 3px;
+        box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .movie-name {
+        font-size: 1.1em;
+        font-weight: bold;
+    }
+
+    .showtime {
+        font-size: 0.9em;
+        color: #0078d7;
+        background-color: #e7f3ff;
+        padding: 2px 5px;
+        border-radius: 3px;
+    }
+
+
+</style>
+
+<header>
+    <h1>Movie Catalog</h1>
+</header>
+
+<div class="movie-cards">
+
+
+    <div class="halls">
+        <h2>Halls:</h2>
+        <!-- Итерация по залам -->
+        <div th:each="hall : ${cinema.halls}" class="hall-card">
+            <!-- Название зала -->
+            <h3 th:text="${hall.name}" class="hall-name">IMAX</h3>
+
+            <!-- Итерация по времени сеансов -->
+            <div th:each="showTime : ${hall.showTimes}" class="showtime-card">
+                <!-- Название фильма -->
+                <p th:text="${showTime.movie.movieName}" class="movie-name">Movie Name</p>
+
+                <!-- Время фильма -->
+                <span th:text="${showTime.startTime}" class="showtime">23:20</span>
+            </div>
+        </div>
+    </div>
+
+
+    <!--    <div class="halls">-->
+<!--        <h2>Halls:</h2>-->
+<!--        &lt;!&ndash; Итерация по залам &ndash;&gt;-->
+<!--        <div th:each="hall : ${cinema.halls}">-->
+<!--            <h3 th:text="'Hall: ' + ${hall.name}">Hall Name</h3>-->
+
+            <!-- Итерация по времени сеансов -->
+<!--            <div th:each="showTime : ${hall.showTimes}">-->
+<!--                <h4 th:text="'Showtime: ' + ${showTime.time}">Showtime</h4>-->
+
+                <!-- Информация о фильме, связанном с сеансом -->
+<!--                <div class="movie-card">-->
+<!--                    <img th:src="${showTime.movie.image}" alt="Movie Poster">-->
+<!--                    <div class="info">-->
+<!--                        <h3 th:text="${showTime.movie.movieName}">Movie Name</h3>-->
+<!--                        <p th:text="'Genre: ' + ${showTime.movie.genre}">Genre</p>-->
+<!--                        <p th:text="'Duration: ' + ${showTime.movie.duration} + ' min'">Duration</p>-->
+<!--                        <p th:text="'Release Date: ' + ${showTime.movie.releaseDate}">Release Date</p>-->
+<!--                        <p th:text="'Age Rating: ' + ${showTime.movie.ageRating}">Age Rating</p>-->
+<!--                        <h4>Movie Info:</h4>-->
+<!--                        <p th:text="'Director: ' + ${showTime.movie.movieInfo.director}">Director</p>-->
+<!--                        <p th:text="'Actors: ' + ${showTime.movie.movieInfo.actor}">Actors</p>-->
+<!--                        <p th:text="'Country: ' + ${showTime.movie.movieInfo.country}">Country</p>-->
+<!--                        <p th:text="'Language: ' + ${showTime.movie.movieInfo.language}">Language</p>-->
+<!--                        <p th:text="'Description: ' + ${showTime.movie.movieInfo.description}">Description</p>-->
+<!--                        <a th:href="${showTime.movie.thrillerUrl}" class="btn">Watch Trailer</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+    <!-- Карточки фильмов через forEach -->
+<!--    <div class="movie-card" th:each="movie : ${cinema.movies}">-->
+<!--        <img th:src="${movie.image}" alt="Movie Poster">-->
+<!--        <div class="info">-->
+<!--            <h3 th:text="${movie.movieName}">Movie Name</h3>-->
+<!--            <p th:text="'Genre: ' + ${movie.genre}">Genre</p>-->
+<!--            <p th:text="'Duration: ' + ${movie.duration} + ' min'">Duration</p>-->
+<!--            <p th:text="'Release Date: ' + ${movie.releaseDate}">Release Date</p>-->
+<!--            <h3 th:text="${movie.showTimes}">ShowTime</h3>-->
+<!--            &lt;!&ndash;            <a th:href="${movie.getShowTimes()}" class="btn">View Details</a>&ndash;&gt;-->
+<!--        </div>-->
+<!--    </div>-->
+</div>
+
+</body>
+</html>

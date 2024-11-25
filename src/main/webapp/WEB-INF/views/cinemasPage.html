@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinemas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<style>
+    body {
+        background-color: #1a1a1a;
+        color: #fff;
+        font-family: Arial, sans-serif;
+        margin: 0;
+    }
+
+    .cinema-card {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Меньше карточки с авторазмерами */
+        gap: 20px; /* Промежуток между карточками */
+        padding: 20px;
+        max-width: 1200px; /* Ограничение максимальной ширины контейнера */
+        margin: 0 auto; /* Центрирование контейнера */
+    }
+
+    .cinemas-grid {
+        background: rgba(0, 0, 0, 0.8);
+        border: 2px solid #f39c12;
+        border-radius: 10px;
+        height: 250px; /* Уменьшенная высота карточки */
+        text-align: center;
+        padding: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        transition: transform 0.3s, box-shadow 0.3s;
+        color: #fff;
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; /* Равномерное распределение внутри карточки */
+    }
+
+    .cinemas-grid:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 12px rgba(243, 156, 18, 0.8);
+    }
+
+    .cinemas-grid img {
+        width: 100%;
+        height: 150px; /* Уменьшенная высота изображения */
+        object-fit: cover; /* Сохранение пропорций внутри заданной области */
+        border-radius: 5px;
+        border: 1px solid #f39c12;
+        margin-bottom: 10px;
+    }
+
+    .cinemas-grid h3 {
+        font-size: 14px; /* Уменьшенный размер шрифта */
+        margin: 0;
+        color: #f1c40f;
+    }
+
+    footer {
+        background: rgba(0, 0, 0, 0.9);
+        color: #aaa;
+        text-align: center;
+        padding: 20px 0;
+        font-size: 14px;
+        margin-top: 20px;
+    }
+
+</style>
+
+
+    <div class="cinema-card">
+        <div th:each="cinema : ${cinemas}" class="cinemas-grid">
+            <a th:href="@{/movies/cinemasDetails(id=${cinema.id})}" class="cinemas-grid">
+                <img th:src="${cinema.imageLogo}" alt="Cinema Image" class="cinemas-grid-image" />
+                <h3 th:text="${cinema.name}"></h3>
+            </a>
+        </div>
+    </div>
+
+
+<footer>
+    <p>&copy; 2024 Cinema Website. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinema Website</title>
+    <style>
+        /* Фон для всей страницы */
+        body {
+            background-image: url('https://pluggedin.ru/images/upload/1685599617.jpeg');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #fff;
+        }
+
+        /* Шапка */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Логотип */
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #f1c40f;
+            text-transform: uppercase;
+        }
+
+        /* Поисковик и кнопка Войти */
+        .right-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-bar input {
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+            font-size: 16px;
+            width: 200px;
+        }
+
+        .search-bar button {
+            padding: 10px 20px;
+            background: linear-gradient(45deg, #f39c12, #af1bdc);
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .search-bar button:hover {
+            background: linear-gradient(45deg, #e4d313, #fd004d);
+            transform: scale(1.1);
+        }
+
+        .login-button {
+            padding: 10px 20px;
+            background: linear-gradient(45deg, #aa1885, #3d1ae3);
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .login-button:hover {
+            background: linear-gradient(45deg, #f1e31c, #63b331);
+            transform: scale(1.1);
+        }
+
+        .movie-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        /* Контейнер для карточек */
+        .showtime-cards {
+            display: flex; /* Включаем Flexbox */
+            flex-wrap: wrap; /* Разрешаем перенос строк, если карточек много */
+            gap: 20px; /* Расстояние между карточками */
+            justify-content: center; /* Выравнивание карточек по центру */
+            padding: 20px; /* Отступы от краев контейнера */
+        }
+
+        /* Карточка шоу */
+        .showtime-card {
+            border-radius: 10px;
+            width: 200px; /* Фиксированный размер карточек */
+            padding: 15px;
+            text-align: center;
+            color: #fff;
+            font-size: 14px;
+            transition: transform 0.2s;
+        }
+
+        .showtime-card:hover {
+            transform: scale(1.05); /* Увеличение при наведении */
+        }
+
+        /* Изображение в карточке */
+        .showtime-card img {
+            width: 100%; /* Изображение адаптируется под ширину карточки */
+            height: auto; /* Автоматическая высота для сохранения пропорций */
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        /* Заголовок фильма */
+        .showtime-card h3 {
+            font-size: 16px; /* Размер шрифта заголовка */
+            margin-bottom: 5px;
+        }
+
+        /* Ссылки */
+        .showtime-card a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 5px 10px;
+            background: linear-gradient(45deg, #000000, #000000);
+            color: #fff;
+            text-decoration: none;
+            font-size: 12px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .showtime-card a:hover {
+            /*background: linear-gradient(45deg, #e67e22, #c0392b);*/
+        }
+
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 48px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px 0;
+            text-align: center;
+            color: #aaa;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 14px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+        }
+
+        * {
+            /* Ваши стили */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+            .sidebar {
+                width: 250px;
+                height: 100vh;
+                background-color: #111;
+                color: #fff;
+                padding: 20px;
+                position: fixed;
+                left: 0;
+                top: 0;
+                transition: 0.3s;
+            }
+
+            .sidebar h2 {
+                text-align: center;
+                margin-bottom: 30px;
+            }
+
+            .sidebar ul {
+                list-style: none;
+                margin-top: 50px; /* Отступ сверху для кнопок */
+            }
+
+            .sidebar ul li {
+                margin: 20px 0;
+            }
+
+            .sidebar ul li a {
+                color: #ddd;
+                text-decoration: none;
+                font-size: 18px;
+                display: block;
+                transition: 0.2s;
+            }
+
+            .sidebar ul li a:hover {
+                color: #f39c12;
+            }
+
+            main {
+                margin-left: 270px; /* Учитываем ширину sidebar */
+                padding: 20px;
+            }
+
+            .movie-cards {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                gap: 20px;
+                margin-top: 20px;
+            }
+
+            /* Ваши стили */
+
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+            }
+
+
+            .sidebar {
+                width: 250px; /* Устанавливаем фиксированную ширину */
+                height: 100vh; /* Высота 100% экрана */
+                background-color: #000000; /* Белый фон */
+                color: #f4f4f4; /* Черный текст */
+                padding: 20px;
+                position: fixed;
+                left: 0;
+                top: 0;
+                transition: 0.3s;
+                border-right: 1px solid #ddd; /* Добавляем границу для отделения */
+                box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Легкая тень для визуального разделения */
+            }
+
+            .sidebar h2 {
+                text-align: center;
+                margin-bottom: 30px;
+                color: #333; /* Темный текст */
+            }
+
+            .sidebar ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .sidebar ul li {
+                margin: 20px 0;
+            }
+
+            .sidebar ul li a {
+                color: #555; /* Темный серый текст */
+                text-decoration: none;
+                font-size: 18px;
+                display: flex;
+                align-items: center;
+                transition: 0.2s;
+            }
+
+            .sidebar ul li a:hover {
+                color: #f39c12; /* Желтый цвет при наведении */
+            }
+
+            .sidebar ul li a img {
+                margin-right: 10px;
+                width: 30px;
+                height: auto;
+            }
+
+            /* Основной контент */
+            main {
+                margin-left: 270px; /* Отступ для учета ширины сайдбара */
+                padding: 20px;
+            }
+
+
+            main {
+                margin-left: 270px; /* Учитываем ширину sidebar */
+                padding: 20px;
+            }
+
+            .movie-cards {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                gap: 20px;
+                margin-top: 20px;
+            }
+
+            .content h1 {
+                margin-left: 250px;
+                padding: 20px;
+                flex-grow: 1;
+            }
+
+            .content h1 {
+                font-size: 24px;
+            }
+
+            .content p {
+                font-size: 18px;
+            }
+
+            /* Убираем перекрытие фильмов с sidebar */
+
+            main {
+                margin-left: 270px; /* Учитываем ширину sidebar + небольшой отступ */
+                padding: 20px;
+            }
+
+            /* Смещаем кнопки в sidebar немного вниз */
+
+            .sidebar ul {
+                margin-top: 50px; /* Отступ сверху для кнопок */
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- Шапка -->
+<header>
+    <!-- Логотип -->
+    <a href="" class="logo">AКино</a>
+
+    <!-- Поисковик и Войти -->
+    <div class="right-section">
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+            <button>Search</button>
+        </div>
+        <a href="/users/login" class="login-button">Войти</a>
+    </div>
+</header>
+
+<!-- Вертикальное меню -->
+<div class="sidebar">
+    <ul>
+
+
+        <div class="sidebar">
+            <h2>Меню</h2>
+            <ul>
+                <li>
+                    <a href="/movies/cinemas">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4sH5hQyuW35uubo7EyW7U_XwoGu2WkJDk7g&s" alt="Cinemas"> Кинотеатры
+                    </a>
+                </li>
+                <li>
+                    <a href="#movies">
+                        <img src="https://cdn4.vectorstock.com/i/1000x1000/36/63/white-movie-or-video-camera-icon-isolated-vector-24843663.jpg" alt="Movies"> Фильмы
+                    </a>
+                </li>
+                <li>
+                    <a href="#imax">
+                        <img src="https://e7.pngegg.com/pngimages/475/831/png-clipart-imax-logo-cinema-logos.png" alt="IMAX"> IMAX
+                    </a>
+                </li>
+                <li>
+                    <a href="#dolby-atmos">
+                        <img src="https://img.favpng.com/6/19/22/dolby-atmos-dts-dolby-laboratories-surround-sound-dolby-digital-png-favpng-GKZjCgZw5Yjirn1w1hXDNu2bX.jpg" alt="Dolby Atmos"> Dolby Atmos
+                    </a>
+                </li>
+            </ul>
+        </div>
+<!--        <li><a href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4sH5hQyuW35uubo7EyW7U_XwoGu2WkJDk7g&s">Кинотеатры</a></li>-->
+<!--        <li><a href="https://e7.pngegg.com/pngimages/475/831/png-clipart-imax-logo-cinema-logos.png">IMAX</a></li>-->
+<!--        <li><a href="https://img.favpng.com/6/19/22/dolby-atmos-dts-dolby-laboratories-surround-sound-dolby-digital-png-favpng-GKZjCgZw5Yjirn1w1hXDNu2bX.jpg">Dolby Atmos</a></li>-->
+<!--        <li><a href="https://img.icons8.com/ios/452/movie-projector.png">Фильмы</a></li>-->
+    </ul>
+</div>
+
+<!-- Вертикальное меню -->
+<div class="vertical-menu"></div>
+
+<!-- Основной контент -->
+<main>
+
+
+    <div class="showtime-cards">
+        <div th:each="showtime : ${showtimes}" class="showtime-card">
+            <a th:href="@{/users/showTimeDetails(id=${showtime.id})}" class="showtime-link">
+                <img th:src="${showtime.movie.image}" alt="Movie Image" class="showtime-image"/>
+                <h3 th:text="${showtime.movie.movieName}"></h3>
+            </a>
+        </div>
+    </div>
+
+
+</main>
+
+<footer>
+    &copy; 2024 Cinema Website. Все права защищены.
+</footer>
+
+
+</body>
+</html>

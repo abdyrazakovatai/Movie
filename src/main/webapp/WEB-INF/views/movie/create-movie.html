@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create new entity</title>
+</head>
+<body>
+<h1>Create new entity</h1>
+<form th:action=«@{/entities}» method="post" th:object=«${entity}»>
+    <label>Name:</label>
+    <input type="text" th:field=«*{column}» />
+    <br />
+    <label>Country:</label>
+    <input type="text" th:field=«*{column}» />
+    <br />
+    <label>Image:</label>
+    <input type="text" th:field=«*{column}» />
+    <br />
+    <button type="submit">Create</button>
+</form>
+</body>
+</html>

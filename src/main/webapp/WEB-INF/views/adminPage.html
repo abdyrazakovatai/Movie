@@ -1,0 +1,977 @@
+<!--&lt;!&ndash;<!DOCTYPE html>&ndash;&gt;-->
+<!--&lt;!&ndash;<html lang="ru">&ndash;&gt;-->
+<!--&lt;!&ndash;<head>&ndash;&gt;-->
+<!--&lt;!&ndash;    <meta charset="UTF-8">&ndash;&gt;-->
+<!--&lt;!&ndash;    <title>Movie Management</title>&ndash;&gt;-->
+<!--&lt;!&ndash;    <style>&ndash;&gt;-->
+<!--&lt;!&ndash;        body {&ndash;&gt;-->
+<!--&lt;!&ndash;            font-family: Arial, sans-serif;&ndash;&gt;-->
+<!--&lt;!&ndash;            margin: 0;&ndash;&gt;-->
+<!--&lt;!&ndash;            padding: 0;&ndash;&gt;-->
+<!--&lt;!&ndash;            background-color: #f4f4f4;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+
+<!--&lt;!&ndash;        h2 {&ndash;&gt;-->
+<!--&lt;!&ndash;            text-align: center;&ndash;&gt;-->
+<!--&lt;!&ndash;            margin-top: 20px;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+
+<!--&lt;!&ndash;        .form-container {&ndash;&gt;-->
+<!--&lt;!&ndash;            max-width: 600px;&ndash;&gt;-->
+<!--&lt;!&ndash;            margin: 20px auto;&ndash;&gt;-->
+<!--&lt;!&ndash;            background-color: #fff;&ndash;&gt;-->
+<!--&lt;!&ndash;            padding: 20px;&ndash;&gt;-->
+<!--&lt;!&ndash;            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);&ndash;&gt;-->
+<!--&lt;!&ndash;            border-radius: 10px;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+
+<!--&lt;!&ndash;        .form-container label {&ndash;&gt;-->
+<!--&lt;!&ndash;            font-weight: bold;&ndash;&gt;-->
+<!--&lt;!&ndash;            display: block;&ndash;&gt;-->
+<!--&lt;!&ndash;            margin-bottom: 8px;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+
+<!--&lt;!&ndash;        .form-container input, .form-container select, .form-container button {&ndash;&gt;-->
+<!--&lt;!&ndash;            width: 100%;&ndash;&gt;-->
+<!--&lt;!&ndash;            padding: 8px;&ndash;&gt;-->
+<!--&lt;!&ndash;            margin-bottom: 12px;&ndash;&gt;-->
+<!--&lt;!&ndash;            border: 1px solid #ddd;&ndash;&gt;-->
+<!--&lt;!&ndash;            border-radius: 5px;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+
+<!--&lt;!&ndash;        .form-container button {&ndash;&gt;-->
+<!--&lt;!&ndash;            background-color: #4CAF50;&ndash;&gt;-->
+<!--&lt;!&ndash;            color: white;&ndash;&gt;-->
+<!--&lt;!&ndash;            border: none;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+
+<!--&lt;!&ndash;        .form-container button:hover {&ndash;&gt;-->
+<!--&lt;!&ndash;            background-color: #45a049;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+
+<!--&lt;!&ndash;        .movie-cards {&ndash;&gt;-->
+<!--&lt;!&ndash;            display: flex;&ndash;&gt;-->
+<!--&lt;!&ndash;            flex-wrap: wrap;&ndash;&gt;-->
+<!--&lt;!&ndash;            justify-content: space-evenly;&ndash;&gt;-->
+<!--&lt;!&ndash;            margin: 20px;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+
+<!--&lt;!&ndash;        .movie-card {&ndash;&gt;-->
+<!--&lt;!&ndash;            background-color: #fff;&ndash;&gt;-->
+<!--&lt;!&ndash;            width: 250px;&ndash;&gt;-->
+<!--&lt;!&ndash;            margin: 10px;&ndash;&gt;-->
+<!--&lt;!&ndash;            padding: 20px;&ndash;&gt;-->
+<!--&lt;!&ndash;            border-radius: 10px;&ndash;&gt;-->
+<!--&lt;!&ndash;            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);&ndash;&gt;-->
+<!--&lt;!&ndash;            text-align: center;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+
+<!--&lt;!&ndash;        .movie-card img {&ndash;&gt;-->
+<!--&lt;!&ndash;            width: 100%;&ndash;&gt;-->
+<!--&lt;!&ndash;            height: auto;&ndash;&gt;-->
+<!--&lt;!&ndash;            border-radius: 5px;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+
+<!--&lt;!&ndash;        .movie-card h3 {&ndash;&gt;-->
+<!--&lt;!&ndash;            margin: 10px 0;&ndash;&gt;-->
+<!--&lt;!&ndash;            font-size: 1.2em;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+
+<!--&lt;!&ndash;        .movie-card p {&ndash;&gt;-->
+<!--&lt;!&ndash;            margin: 5px 0;&ndash;&gt;-->
+<!--&lt;!&ndash;            font-size: 0.9em;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+
+<!--&lt;!&ndash;        .movie-card .details {&ndash;&gt;-->
+<!--&lt;!&ndash;            color: #4CAF50;&ndash;&gt;-->
+<!--&lt;!&ndash;            text-decoration: none;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+
+<!--&lt;!&ndash;        .movie-card .details:hover {&ndash;&gt;-->
+<!--&lt;!&ndash;            text-decoration: underline;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+
+<!--&lt;!&ndash;        .no-movies {&ndash;&gt;-->
+<!--&lt;!&ndash;            text-align: center;&ndash;&gt;-->
+<!--&lt;!&ndash;            margin-top: 20px;&ndash;&gt;-->
+<!--&lt;!&ndash;            font-size: 1.2em;&ndash;&gt;-->
+<!--&lt;!&ndash;            color: #888;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;    </style>&ndash;&gt;-->
+<!--&lt;!&ndash;</head>&ndash;&gt;-->
+<!--&lt;!&ndash;<body>&ndash;&gt;-->
+<!--&lt;!&ndash;    <form action="/movies/add" method="POST">&ndash;&gt;-->
+
+<!--&lt;!&ndash;submit">Add Movie</button>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;    </form>&ndash;&gt;-->
+
+<!--&lt;!&ndash;&lt;!&ndash; Список фильмов &ndash;&gt;&ndash;&gt;-->
+
+<!--&lt;!&ndash;<a href="/movies/add">add movie</a>&ndash;&gt;-->
+<!--&lt;!&ndash;<a href="/movies/showTime">show time</a>&ndash;&gt;-->
+<!--&lt;!&ndash;<a href="/movies/addHall">add hall</a>&ndash;&gt;-->
+
+<!--&lt;!&ndash;<div th:if="${movies != null}">&ndash;&gt;-->
+<!--&lt;!&ndash;    <h2>Movies List</h2>&ndash;&gt;-->
+<!--&lt;!&ndash;    <div class="movie-cards">&ndash;&gt;-->
+<!--&lt;!&ndash;        <div th:each="movie : ${movies}" class="movie-card">&ndash;&gt;-->
+<!--&lt;!&ndash;            <img th:src="${movie.image}" alt="Movie Image"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            <h3 th:text="${movie.movieName}"></h3>&ndash;&gt;-->
+<!--&lt;!&ndash;            <p>Genre: <span th:text="${movie.genre}"></span></p>&ndash;&gt;-->
+<!--&lt;!&ndash;            <p>Duration: <span th:text="${movie.duration}"></span> minutes</p>&ndash;&gt;-->
+<!--&lt;!&ndash;            <p>Release Date: <span th:text="${movie.releaseDate}"></span></p>&ndash;&gt;-->
+<!--&lt;!&ndash;            <p>Age Rating: <span th:text="${movie.ageRating}"></span></p>&ndash;&gt;-->
+<!--&lt;!&ndash;            <a th:href="${movie.thrillerUrl}" target="_blank">Watch Trailer</a>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            &lt;!&ndash; Данные из movieInfo &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;            <div th:if="${movie.movieInfo != null}">&ndash;&gt;-->
+<!--&lt;!&ndash;                <h4>Movie Info</h4>&ndash;&gt;-->
+<!--&lt;!&ndash;                <p>Director: <span th:text="${movie.movieInfo.director}"></span></p>&ndash;&gt;-->
+<!--&lt;!&ndash;                <p>Main Actor: <span th:text="${movie.movieInfo.actor}"></span></p>&ndash;&gt;-->
+<!--&lt;!&ndash;                <p>Country: <span th:text="${movie.movieInfo.country}"></span></p>&ndash;&gt;-->
+<!--&lt;!&ndash;                <p>Language: <span th:text="${movie.movieInfo.language}"></span></p>&ndash;&gt;-->
+<!--&lt;!&ndash;                <p>Description: <span th:text="${movie.movieInfo.description}"></span></p>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <a th:href="@{/adminPage/edit/{id}(id=${movie.id})}" class="details">Edit</a>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;&lt;!&ndash; Сообщение об отсутствии фильмов &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;<div th:unless="${movies != null}" class="no-movies">&ndash;&gt;-->
+<!--&lt;!&ndash;    <p>No movies found.</p>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;</body>&ndash;&gt;-->
+<!--&lt;!&ndash;</html>&ndash;&gt;-->
+<!--<!DOCTYPE html>-->
+<!--<html lang="ru">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Movie Management</title>-->
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: 'Arial', sans-serif;-->
+<!--            margin: 0;-->
+<!--            padding: 0;-->
+<!--            background-color: #f4f4f4;-->
+<!--        }-->
+
+<!--        h2 {-->
+<!--            text-align: center;-->
+<!--            margin-top: 20px;-->
+<!--            font-size: 2em;-->
+<!--            color: #333;-->
+<!--        }-->
+
+<!--        .header {-->
+<!--            background-color: #4CAF50;-->
+<!--            padding: 10px 0;-->
+<!--            color: white;-->
+<!--            text-align: center;-->
+<!--            font-size: 1.5em;-->
+<!--        }-->
+
+<!--        .nav {-->
+<!--            display: flex;-->
+<!--            justify-content: center;-->
+<!--            gap: 20px;-->
+<!--            margin-top: 10px;-->
+<!--            background-color: #333;-->
+<!--            padding: 10px;-->
+<!--        }-->
+
+<!--        .nav a {-->
+<!--            color: white;-->
+<!--            text-decoration: none;-->
+<!--            padding: 10px 20px;-->
+<!--            border-radius: 5px;-->
+<!--            transition: background-color 0.3s;-->
+<!--        }-->
+
+<!--        .nav a:hover {-->
+<!--            background-color: #555;-->
+<!--        }-->
+
+<!--        .form-container {-->
+<!--            max-width: 600px;-->
+<!--            margin: 20px auto;-->
+<!--            background-color: #fff;-->
+<!--            padding: 20px;-->
+<!--            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);-->
+<!--            border-radius: 10px;-->
+<!--        }-->
+
+<!--        .form-container label {-->
+<!--            font-weight: bold;-->
+<!--            display: block;-->
+<!--            margin-bottom: 8px;-->
+<!--        }-->
+
+<!--        .form-container input, .form-container select, .form-container button {-->
+<!--            width: 100%;-->
+<!--            padding: 8px;-->
+<!--            margin-bottom: 12px;-->
+<!--            border: 1px solid #ddd;-->
+<!--            border-radius: 5px;-->
+<!--        }-->
+
+<!--        .form-container button {-->
+<!--            background-color: #4CAF50;-->
+<!--            color: white;-->
+<!--            border: none;-->
+<!--        }-->
+
+<!--        .form-container button:hover {-->
+<!--            background-color: #45a049;-->
+<!--        }-->
+
+<!--        .movie-cards {-->
+<!--            display: flex;-->
+<!--            flex-wrap: wrap;-->
+<!--            justify-content: space-evenly;-->
+<!--            margin: 20px;-->
+<!--        }-->
+
+<!--        .movie-card {-->
+<!--            background-color: #fff;-->
+<!--            width: 250px;-->
+<!--            margin: 10px;-->
+<!--            padding: 20px;-->
+<!--            border-radius: 10px;-->
+<!--            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);-->
+<!--            text-align: center;-->
+<!--            transition: transform 0.3s, box-shadow 0.3s;-->
+<!--        }-->
+
+<!--        .movie-card:hover {-->
+<!--            transform: scale(1.05);-->
+<!--            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);-->
+<!--        }-->
+
+<!--        .movie-card img {-->
+<!--            width: 100%;-->
+<!--            height: auto;-->
+<!--            border-radius: 5px;-->
+<!--        }-->
+
+<!--        .movie-card h3 {-->
+<!--            margin: 10px 0;-->
+<!--            font-size: 1.2em;-->
+<!--            color: #333;-->
+<!--        }-->
+
+<!--        .movie-card p {-->
+<!--            margin: 5px 0;-->
+<!--            font-size: 0.9em;-->
+<!--            color: #777;-->
+<!--        }-->
+
+<!--        .movie-card .details {-->
+<!--            color: #4CAF50;-->
+<!--            text-decoration: none;-->
+<!--            font-weight: bold;-->
+<!--        }-->
+
+<!--        .movie-card .details:hover {-->
+<!--            text-decoration: underline;-->
+<!--        }-->
+
+<!--        .no-movies {-->
+<!--            text-align: center;-->
+<!--            margin-top: 20px;-->
+<!--            font-size: 1.2em;-->
+<!--            color: #888;-->
+<!--        }-->
+
+<!--        .add-movie-button {-->
+<!--            background-color: #4CAF50;-->
+<!--            color: white;-->
+<!--            padding: 12px 25px;-->
+<!--            border-radius: 5px;-->
+<!--            text-decoration: none;-->
+<!--            font-size: 1.1em;-->
+<!--            transition: background-color 0.3s;-->
+<!--            display: block;-->
+<!--            text-align: center;-->
+<!--            margin: 20px auto;-->
+<!--        }-->
+
+<!--        .add-movie-button:hover {-->
+<!--            background-color: #45a049;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<div class="header">-->
+<!--    Movie Management Panel-->
+<!--</div>-->
+
+<!--&lt;!&ndash; Навигация &ndash;&gt;-->
+<!--<div class="nav">-->
+<!--    <a href="/movies/add">Add Movie</a>-->
+<!--    <a href="/movies/showTime">Show Time</a>-->
+<!--    <a href="/movies/addHall">Add Hall</a>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; Форма для добавления фильма (если необходимо) &ndash;&gt;-->
+<!--<div class="form-container">-->
+<!--    <form action="/movies/add" method="POST">-->
+<!--        &lt;!&ndash; Пример полей формы для добавления фильма &ndash;&gt;-->
+<!--        <label for="movieName">Movie Name</label>-->
+<!--        <input type="text" id="movieName" name="movieName" required />-->
+
+<!--        <label for="genre">Genre</label>-->
+<!--        <input type="text" id="genre" name="genre" required />-->
+
+<!--        <label for="duration">Duration (minutes)</label>-->
+<!--        <input type="number" id="duration" name="duration" required />-->
+
+<!--        <label for="releaseDate">Release Date</label>-->
+<!--        <input type="date" id="releaseDate" name="releaseDate" required />-->
+
+<!--        <label for="ageRating">Age Rating</label>-->
+<!--        <input type="text" id="ageRating" name="ageRating" required />-->
+
+<!--        <label for="image">Movie Image URL</label>-->
+<!--        <input type="text" id="image" name="image" />-->
+
+<!--        <button type="submit">Add Movie</button>-->
+<!--    </form>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; Список фильмов &ndash;&gt;-->
+<!--<div th:if="${movies != null}">-->
+<!--    <h2>Movies List</h2>-->
+<!--    <div class="movie-cards">-->
+<!--        <div th:each="movie : ${movies}" class="movie-card">-->
+<!--            <img th:src="${movie.image}" alt="Movie Image"/>-->
+<!--            <h3 th:text="${movie.movieName}"></h3>-->
+<!--            <p>Genre: <span th:text="${movie.genre}"></span></p>-->
+<!--            <p>Duration: <span th:text="${movie.duration}"></span> minutes</p>-->
+<!--            <p>Release Date: <span th:text="${movie.releaseDate}"></span></p>-->
+<!--            <p>Age Rating: <span th:text="${movie.ageRating}"></span></p>-->
+<!--            <a th:href="${movie.thrillerUrl}" target="_blank">Watch Trailer</a>-->
+
+<!--            <div th:if="${movie.movieInfo != null}">-->
+<!--                <h4>Movie Info</h4>-->
+<!--                <p>Director: <span th:text="${movie.movieInfo.director}"></span></p>-->
+<!--                <p>Main Actor: <span th:text="${movie.movieInfo.actor}"></span></p>-->
+<!--                <p>Country: <span th:text="${movie.movieInfo.country}"></span></p>-->
+<!--                <p>Language: <span th:text="${movie.movieInfo.language}"></span></p>-->
+<!--                <p>Description: <span th:text="${movie.movieInfo.description}"></span></p>-->
+<!--            </div>-->
+
+<!--            <a th:href="@{/adminPage/edit/{id}(id=${movie.id})}" class="details">Edit</a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; Сообщение об отсутствии фильмов &ndash;&gt;-->
+<!--<div th:unless="${movies != null}" class="no-movies">-->
+<!--    <p>No movies found.</p>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; Кнопка для добавления фильма &ndash;&gt;-->
+<!--<a href="/movies/add" class="add-movie-button">Add Movie</a>-->
+
+<!--</body>-->
+<!--</html>-->
+<!--~~~~~~~~~~~~~-->
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Admin Panel & Movies</title>-->
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            margin: 0;-->
+<!--            padding: 0;-->
+<!--            background-color: #f4f4f4;-->
+<!--        }-->
+
+<!--        .navbar {-->
+<!--            background-color: #333;-->
+<!--            overflow: hidden;-->
+<!--            padding: 10px;-->
+<!--            display: flex;-->
+<!--            justify-content: center;-->
+<!--        }-->
+
+<!--        .navbar a {-->
+<!--            color: white;-->
+<!--            padding: 14px 20px;-->
+<!--            text-decoration: none;-->
+<!--            text-align: center;-->
+<!--        }-->
+
+<!--        .navbar a:hover {-->
+<!--            background-color: #ddd;-->
+<!--            color: black;-->
+<!--        }-->
+
+<!--        .section {-->
+<!--            display: none;-->
+<!--            padding: 20px;-->
+<!--            background-color: #fff;-->
+<!--            margin: 20px auto;-->
+<!--            max-width: 900px;-->
+<!--            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);-->
+<!--            border-radius: 8px;-->
+<!--        }-->
+
+<!--        .section.active {-->
+<!--            display: block;-->
+<!--        }-->
+
+<!--        h2 {-->
+<!--            text-align: center;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--&lt;!&ndash; Навигация &ndash;&gt;-->
+<!--<div class="navbar">-->
+<!--    <a href="#" onclick="showSection('moviesSection')">Movies</a>-->
+<!--    <a href="#" onclick="showSection('adminPanelSection')">Admin Panel</a>-->
+<!--    <a href="#" onclick="showSection('addHall')">Add Hall</a>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; Секция с фильмами &ndash;&gt;-->
+<!--<div id="moviesSection" class="section">-->
+<!--    <h2>Movies List</h2>-->
+<!--    <p>Here you can see the list of movies...</p>-->
+<!--    &lt;!&ndash; Разместите контент списка фильмов здесь &ndash;&gt;-->
+<!--    &lt;!&ndash; Список фильмов &ndash;&gt;-->
+<!--    <div th:if="${movies != null}">-->
+<!--        <h2>Movies List</h2>-->
+<!--        <div class="movie-cards">-->
+<!--            <div th:each="movie : ${movies}" class="movie-card">-->
+<!--                <img th:src="${movie.image}" alt="Movie Image"/>-->
+<!--                <h3 th:text="${movie.movieName}"></h3>-->
+<!--                <p>Genre: <span th:text="${movie.genre}"></span></p>-->
+<!--                <p>Duration: <span th:text="${movie.duration}"></span> minutes</p>-->
+<!--                <p>Release Date: <span th:text="${movie.releaseDate}"></span></p>-->
+<!--                <p>Age Rating: <span th:text="${movie.ageRating}"></span></p>-->
+<!--                <a th:href="${movie.thrillerUrl}" target="_blank">Watch Trailer</a>-->
+
+<!--                <div th:if="${movie.movieInfo != null}">-->
+<!--                    <h4>Movie Info</h4>-->
+<!--                    <p>Director: <span th:text="${movie.movieInfo.director}"></span></p>-->
+<!--                    <p>Main Actor: <span th:text="${movie.movieInfo.actor}"></span></p>-->
+<!--                    <p>Country: <span th:text="${movie.movieInfo.country}"></span></p>-->
+<!--                    <p>Language: <span th:text="${movie.movieInfo.language}"></span></p>-->
+<!--                    <p>Description: <span th:text="${movie.movieInfo.description}"></span></p>-->
+<!--                </div>-->
+
+<!--                <a th:href="@{/adminPage/edit/{id}(id=${movie.id})}" class="details">Edit</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Сообщение об отсутствии фильмов &ndash;&gt;-->
+<!--    <div th:unless="${movies != null}" class="no-movies">-->
+<!--        <p>No movies found.</p>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<div id="addHall" class="section">-->
+<!--    <h2>Add New Hall</h2>-->
+<!--    <form action="/movies/saveHall" method="POST">-->
+<!--        &lt;!&ndash;     Hall Name &ndash;&gt;-->
+<!--        <label for="name">Hall Name</label>-->
+<!--        <input type="text" id="name" name="name" placeholder="Enter Hall Name" required>-->
+
+<!--        &lt;!&ndash; Seat Count &ndash;&gt;-->
+<!--        <label for="seatCount">Seat Count</label>-->
+<!--        <input id="seatCount" type="number" name="seatCount" placeholder="Enter number of seats" required>-->
+
+<!--        <button type="submit">Add Hall</button>-->
+<!--        </form>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; Секция панели администратора &ndash;&gt;-->
+<!--<div id="adminPanelSection" class="section">-->
+<!--    <h2>Admin Panel</h2>-->
+<!--    <p>Here you can manage movies, halls, and showtimes...</p>-->
+<!--    &lt;!&ndash; Разместите админскую панель здесь &ndash;&gt;-->
+<!--    <div class="form-container">-->
+<!--        <h2>Add New Movie</h2>-->
+<!--        <form action="/movies/save" method="POST">-->
+
+<!--            <label for="cinemaId">Select Cinema:</label>-->
+<!--            <select id="cinemaId" name="cinemaId" required>-->
+<!--                <option value="" disabled>Select a cinema</option>-->
+<!--                <option th:each="cinema : ${cinemas}" th:value="${cinema.id }" th:text="${cinema.name}"></option>-->
+<!--            </select><br><br>-->
+
+<!--            <label for="movieName">Название Фильма:</label>-->
+<!--            <input type="text" id="movieName" name="movieName" required><br>-->
+
+<!--            <label for="image">Image:</label>-->
+<!--            <input type="text" id="image" name="image" required/><br>-->
+
+<!--            <label for="genre">Genre:</label>-->
+<!--            <select id="genre" name="genre" required>-->
+<!--                <option value="ACTION">Action</option>-->
+<!--                <option value="ADVENTURE">Adventure</option>-->
+<!--                <option value="COMEDY">Comedy</option>-->
+<!--                <option value="DRAMA">Drama</option>-->
+<!--                <option value="HORROR">Horror</option>-->
+<!--                <option value="SCIENCE_FICTION">Science Fiction</option>-->
+<!--                <option value="FANTASY">Fantasy</option>-->
+<!--                <option value="ROMANCE">Romance</option>-->
+<!--                <option value="THRILLER">Thriller</option>-->
+<!--                <option value="DOCUMENTARY">Documentary</option>-->
+<!--            </select><br>-->
+
+<!--            <label for="duration">Duration (in minutes):</label>-->
+<!--            <input type="number" id="duration" name="duration" required/><br>-->
+
+<!--            <label for="releaseDate">Release Date:</label>-->
+<!--            <input type="date" id="releaseDate" name="releaseDate" required/><br>-->
+
+<!--            <label for="ageRating">Age Rating:</label>-->
+<!--            <input type="number" id="ageRating" name="ageRating" required/><br>-->
+
+<!--            <label for="thrillerUrl">Thriller URL:</label>-->
+<!--            <input type="url" id="thrillerUrl" name="thrillerUrl" required/><br>-->
+
+<!--            <h3>Movie Info</h3>-->
+
+<!--            <label for="director">Director:</label>-->
+<!--            <input type="text" id="director" name="director" required><br>-->
+
+<!--            <label for="actor">Actor:</label>-->
+<!--            <input type="text" id="actor" name="actor" required><br>-->
+
+<!--            <label for="country">Country:</label>-->
+<!--            <input type="text" id="country" name="country" required><br>-->
+
+<!--            <label for="language">Language:</label>-->
+<!--            <input type="text" id="language" name="language" required><br>-->
+
+<!--            <label for="description">Description:</label>-->
+<!--            <input type="text" id="description" name="description" required><br>-->
+
+<!--            <button type="submit">Add Movie</button>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<script>-->
+<!--    function showSection(sectionId) {-->
+<!--        // Скрыть все секции-->
+<!--        const sections = document.querySelectorAll('.section');-->
+<!--        sections.forEach(section => section.classList.remove('active'));-->
+
+<!--        // Показать выбранную секцию-->
+<!--        document.getElementById(sectionId).classList.add('active');-->
+<!--    }-->
+
+<!--    // Показать первую секцию по умолчанию-->
+<!--    document.addEventListener('DOMContentLoaded', () => {-->
+<!--        showSection('moviesSection');-->
+<!--    });-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
+<!--~~~~~~~~~~~~~~~~~~~~~~-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel & Movies</title>
+    <style>
+        /* Общие стили */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            color: #fff;
+            background-image: url('https://www.example.com/your-background-image.jpg'); /* Замените ссылку на ваш фон */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* Навигация */
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar a {
+            color: #fff;
+            padding: 14px 25px;
+            text-decoration: none;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background-color: #6a4c9c;
+            color: black;
+        }
+
+        /* Секции */
+        .section {
+            display: none;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 900px;
+            background-color: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            transition: all 0.5s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 30px;
+            color: #6a4c9c;
+            margin-bottom: 20px;
+        }
+
+        /* Стили для карточек фильмов */
+        .movie-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Уменьшено минимальное значение для карточек */
+            gap: 15px;
+        }
+
+        .movie-card {
+            background-color: #333;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .movie-card img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .movie-card:hover {
+            transform: scale(1.05);
+        }
+
+        .movie-card h3 {
+            color: #6a4c9c;
+            padding: 10px;
+            font-size: 20px;
+            margin: 0;
+        }
+
+        .movie-card p {
+            color: #ccc;
+            padding: 5px 10px;
+            margin: 0;
+        }
+
+        .details {
+            display: block;
+            padding: 10px;
+            background-color: #6a4c9c;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .details:hover {
+            background-color: #4b347d;
+        }
+
+        .no-movies p {
+            color: #bbb;
+            text-align: center;
+        }
+
+        /* Стили для поля Hall */
+        .form-container {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .form-container label,
+        .form-container input,
+        .form-container select,
+        .form-container button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .form-container button {
+            background: linear-gradient(45deg, #6a4c9c, #4b347d);
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .form-container button:hover {
+            background: linear-gradient(45deg, #4b347d, #6a4c9c);
+        }
+
+        .form-container input,
+        .form-container select {
+            background-color: #222;
+            color: #fff;
+            border: 1px solid #444;
+        }
+
+        /* Анимация при переходе между секциями */
+        .section {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .section.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+<!-- Навигация -->
+<div class="navbar">
+    <a href="#" onclick="showSection('moviesSection')">Movies</a>
+    <a href="#" onclick="showSection('addMovie')">Add Movie </a>
+    <a href="#" onclick="showSection('addHall')">Add Hall</a>
+    <a href="#" onclick="showSection('showTime')">Add ShowTime</a>
+</div>
+
+<!-- Секция с фильмами -->
+<div id="moviesSection" class="section">
+    <h2>Movies List</h2>
+    <p>Here you can see the list of movies...</p>
+    <h2>Movies List</h2>-->
+    <div class="movie-cards">
+        <div th:each="movie : ${movies}" class="movie-card">
+            <img th:src="${movie.image}" alt="Movie Image"/>
+            <h3 th:text="${movie.movieName}"></h3>
+            <p>Genre: <span th:text="${movie.genre}"></span></p>
+            <p>Duration: <span th:text="${movie.duration}"></span> minutes</p>
+            <p>Release Date: <span th:text="${movie.releaseDate}"></span></p>
+            <p>Age Rating: <span th:text="${movie.ageRating}"></span></p>
+            <a th:href="${movie.thrillerUrl}" target="_blank">Watch Trailer</a>
+
+            <div th:if="${movie.movieInfo != null}">
+                <h4>Movie Info</h4>
+                <p>Director: <span th:text="${movie.movieInfo.director}"></span></p>
+                <p>Main Actor: <span th:text="${movie.movieInfo.actor}"></span></p>
+                <p>Country: <span th:text="${movie.movieInfo.country}"></span></p>
+                <p>Language: <span th:text="${movie.movieInfo.language}"></span></p>
+                <p>Description: <span th:text="${movie.movieInfo.description}"></span></p>
+            </div>
+
+            <a th:href="@{/adminPage/edit/{id}(id=${movie.id})}" class="details">Edit</a>
+        </div>
+    </div>
+
+
+    Список фильмов
+    <div class="movie-cards">
+        <div class="movie-card">
+            <img src="https://via.placeholder.com/200" alt="Movie Image"/>
+            <h3>Movie Name</h3>
+            <p>Genre: Action</p>
+            <p>Duration: 120 minutes</p>
+            <p>Release Date: 2024-01-01</p>
+            <p>Age Rating: 12+</p>
+            <a href="#" class="details">Watch Trailer</a>
+        </div>
+        <!-- Другие карточки фильмов здесь -->
+    </div>
+    <!-- Сообщение об отсутствии фильмов -->
+    <div class="no-movies">
+        <p>No movies found.</p>
+    </div>
+</div>
+
+
+<!-- Секция добавления нового зала -->
+<div id="addHall" class="section">
+    <h2>Add New Hall</h2>
+    <form action="/movies/saveHall" method="POST">
+    <label for="cinemaId">Select Cinema:</label>-->
+    <select id="cinemaId" name="cinemaId" required>
+        <option value="" disabled>Select a cinema</option>
+        <option th:each="cinema : ${cinemas}" th:value="${cinema.id }" th:text="${cinema.name}"></option>
+    </select><br><br>
+
+
+        <label for="name">Hall Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter Hall Name" required>
+        <label for="seatCount">Seat Count</label>
+        <input id="seatCount" type="number" name="seatCount" placeholder="Enter number of seats" required>
+        <button type="submit">Add Hall</button>
+    </form>
+</div>
+
+
+<!-- Секция панели администратора -->
+<div id="addMovie" class="section">
+    <h2>Admin Panel</h2>
+    <div class="form-container">
+        <h2>Add New Movie</h2>
+        <form action="/movies/save" method="POST">
+            <!--            <label for="cinemaId">Select Cinema:</label>-->
+            <!--            <select id="cinemaId" name="cinemaId" required>-->
+            <!--                <option value="" disabled>Select a cinema</option>-->
+            <!--                <option th:each="cinema : ${cinemas}" th:value="${cinema.id }" th:text="${cinema.name}"></option>-->
+            <!--            </select><br><br>-->
+
+            <!--            <label for="halls">Select Hall:</label>-->
+            <!--            <select id="halls" name="halls" required>-->
+            <!--                <option value="" disabled>Select a cinema</option>-->
+            <!--                <option th:each="hall : ${halls}" th:value="${hall.id }" th:text="${hall.name}"></option>-->
+            <!--            </select><br><br>-->
+
+            <label for="movieName">Название Фильма:</label>
+            <input type="text" id="movieName" name="movieName" required><br>
+
+            <label for="image">Image:</label>
+            <input type="text" id="image" name="image" required/><br>
+
+            <label for="genre">Genre:</label>
+            <select id="genre" name="genre" required>
+                <option value="ACTION">Action</option>
+                <option value="ADVENTURE">Adventure</option>
+                <option value="COMEDY">Comedy</option>
+                <option value="DRAMA">Drama</option>
+                <option value="HORROR">Horror</option>
+                <option value="SCIENCE_FICTION">Science Fiction</option>
+                <option value="FANTASY">Fantasy</option>
+                <option value="ROMANCE">Romance</option>
+                <option value="THRILLER">Thriller</option>
+                <option value="DOCUMENTARY">Documentary</option>
+            </select><br>
+
+            <label for="duration">Duration (in minutes):</label>
+            <input type="number" id="duration" name="duration" required/><br>
+
+            <label for="releaseDate">Release Date:</label>
+            <input type="date" id="releaseDate" name="releaseDate" required/><br>
+
+            <label for="ageRating">Age Rating:</label>
+            <input type="number" id="ageRating" name="ageRating" required/><br>
+
+            <label for="thrillerUrl">Thriller URL:</label>
+            <input type="url" id="thrillerUrl" name="thrillerUrl" required/><br>
+
+            <h3>Movie Info</h3>
+
+            <label for="director">Director:</label>
+            <input type="text" id="director" name="director" required><br>
+
+            <label for="actor">Actor:</label>
+            <input type="text" id="actor" name="actor" required><br>
+
+            <label for="country">Country:</label>
+            <input type="text" id="country" name="country" required><br>
+
+            <label for="language">Language:</label>
+            <input type="text" id="language" name="language" required><br>
+
+            <label for="description">Description:</label>
+            <input type="text" id="description" name="description" required><br>
+
+            <button type="submit">Add Movie</button>
+
+        </form>
+    </div>
+</div>
+
+<div id="showTime" class="section">
+    <h1>Add Showtime</h1>
+    <form action="/movies/saveShowTime" method="post">
+        <!--    &lt;!&ndash; Cinema &ndash;&gt;-->
+        <!--    <label for="cinemas">Cinema</label>-->
+        <!--    <select id="cinemas" name="cinemaId" required>-->
+        <!--        <th:block th:each="cinema : ${cinemas}">`-->
+        <!--            <option th:value="${cinema.id}" th:text="${cinema.name}"></option>-->
+        <!--        </th:block>-->
+        <!--    </select>-->
+
+        <!-- Movie -->
+        <label for="movies">Movie</label>
+        <select id="movies" name="movieId" required>
+            <th:block th:each="movie : ${movies}">
+                <option th:value="${movie.id}" th:text="${movie.movieName}"></option>
+            </th:block>
+        </select>
+
+
+
+        <!-- Hall -->
+        <label for="halls">Hall</label>
+        <select id="halls" name="hallId" required>
+            <th:block th:each="hall : ${halls}">
+                <option th:value="${hall.id}"
+                        th:text="${hall.name + ' (' + (hall.cinema != null ? hall.cinema.name : 'No Cinema') + ')'}">
+                </option>
+            </th:block>
+        </select>
+<!--        <label for="halls">Hall</label>-->
+<!--        <select id="halls" name="hallId" required>-->
+<!--            <th:block th:each="hall : ${halls}">-->
+<!--                <option th:value="${hall.id}" th:text="${hall.name}"></option>-->
+<!--            </th:block>-->
+<!--        </select>-->
+
+        <!--     Hall Name -->
+        <!--    <label for="name">Hall Name</label>-->
+        <!--    <input type="text" id="name" name="name" placeholder="Enter Hall Name" required>-->
+
+        <!--    &lt;!&ndash; Seat Count &ndash;&gt;-->
+        <!--    <label for="seatCount">Seat Count</label>-->
+        <!--    <input id="seatCount" type="number" name="seatCount" placeholder="Enter number of seats" required>-->
+
+        <!-- Start Time -->
+        <label for="startTime">Start Time</label>
+        <input type="datetime-local" id="startTime" name="startTime" required>
+
+        <!-- Price -->
+        <label for="price">Price</label>
+        <input type="number" step="0.01" id="price" name="price" placeholder="Enter Price" required>
+
+        <button type="submit">Save Showtime</button>
+    </form>
+</div>
+
+
+<script>
+    function showSection(sectionId) {
+        const sections = document.querySelectorAll('.section');
+        sections.forEach(section => section.classList.remove('active'));
+        document.getElementById(sectionId).classList.add('active');
+    }
+</script>
+</body>
+</html>
+
+
+
