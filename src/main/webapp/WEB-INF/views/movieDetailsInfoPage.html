@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<style>
+    .movie-details {
+        display: flex;
+        gap: 2rem;
+        align-items: flex-start;
+        flex-wrap: wrap; /* Чтобы элементы располагались по нескольким строкам при необходимости */
+    }
+
+    .movie-details .movie-image {
+        width: 300px; /* Увеличена картинка */
+        height: auto;
+        border-radius: 8px;
+    }
+
+    .movie-details .movie-text {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        flex: 10; /* Чтобы блок с текстом занимал оставшееся пространство */
+    }
+
+    .movie-details .movie-title {
+        font-size: 5rem; /* Увеличенное название */
+        font-weight: bold;
+        color: #ff9900; /* Цвет для названия */
+    }
+
+
+    .movie-details .movie-text strong {
+        color: #ff9900; /* Цвет для выделения текста */
+    }
+
+    .movie-info {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+
+    .movie-info div {
+        font-size: 1.1rem;
+        color: #fff;
+    }
+
+    .movie-info strong {
+        color: #ff9900;
+    }
+</style>
+
+<div class="movie-details">
+    <img th:src="${showtime.getMovie().image}" alt="Movie Image" class="movie-image"/>
+
+    <!-- Название фильма жирным и чуть большим -->
+    <div class="movie-text">
+        <div class="movie-title" th:text="${showtime.movie.movieName}"></div>
+        <div><strong>Жанр:</strong> <span th:text="${showtime.movie.genre}"></span></div>
+        <div><strong>Продолжительность:</strong> <span th:text="${showtime.movie.duration}"></span> минут</div>
+        <div><strong>Дата выхода:</strong> <span th:text="${showtime.movie.releaseDate}"></span></div>
+        <div><strong>Возрастное ограничение:</strong> <span th:text="${showtime.movie.ageRating}"></span></div>
+
+        <div><strong>Режиссер:</strong> <span th:text="${showtime.movie.movieInfo.director}"></span></div>
+        <div><strong>Актеры:</strong> <span th:text="${showtime.movie.movieInfo.actor}"></span></div>
+        <div><strong>Страна:</strong> <span th:text="${showtime.movie.movieInfo.country}"></span></div>
+        <div><strong>Язык:</strong> <span th:text="${showtime.movie.movieInfo.language}"></span></div>
+
+        <!-- Перемещаем описание немного вправо -->
+        <div><strong>Описание:</strong> <span th:text="${showtime.movie.movieInfo.description}" style="margin-left: 200px;"></span></div>
+        <!--                </div>-->
+        <div><strong>Время начало:</strong> <span th:text="${showtime.startTime}"></span></div>
+
+        <form action="/users/buyTicket" method="get">
+            <input type="hidden" name="showtimeId" th:value="${showtime.id}" />
+            <button type="submit">Купить билет</button>
+        </form>
+
+    </div>
+</div>
+
+
+
+
+</body>
+</html>

@@ -39,7 +39,7 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL)
     Card card;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     List<Ticket> tickets;
 
     public User(String email, String password, String phoneNumber, Role role, LocalDateTime registrationDate, String name, Card card) {

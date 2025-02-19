@@ -1078,6 +1078,9 @@
                         <div><strong>Время начала:</strong> <span th:text="${showtime.startTime}"></span></div>
                         <div><strong>Зал:</strong> <span th:text="${showtime.hall.name}"></span></div>
                         <div><strong>Мест:</strong> <span th:text="${showtime.hall.seatCount}"></span></div>
+
+<!--                        <a href="/users/buyTicket">Buy Ticket</a>-->
+                        <a th:href="@{/users/buyTicket(showtimeId=${showtime.id})}">Buy Ticket</a>
                     </div>
                 </div>
             </div>

@@ -171,7 +171,7 @@
 <body>
 <div class="container">
     <h1>Add Showtime</h1>
-    <form action="/movies/saveShowTime" method="post">
+    <form action="/movies/saveShowTime" method="POST">
         <!-- Movie -->
         <label for="movies">Movie</label>
         <select id="movies" name="movieId" required>
@@ -181,14 +181,22 @@
         </select>
 
         <!-- Hall -->
+
         <label for="halls">Hall</label>
         <select id="halls" name="hallId" required>
             <th:block th:each="hall : ${halls}">
-                <option th:value="${hall.id}"
-                        th:text="${hall.name + ' (' + (hall.cinema != null ? hall.cinema.name : 'No Cinema') + ')'}">
-                </option>
+                <option th:value="${hall.id}" th:text="${hall.name + ' (' + (hall.cinema != null ? hall.cinema.name : 'No Cinema') + ')'}"></option>
+                <!--            <option th:value="${hall.id}" th:text="${hall.name + }"></option>-->
             </th:block>
         </select>
+<!--        <label for="hallId">Hall</label>-->
+        <!--        <select id="hallId" name="hallId" required>-->
+        <!--            <th:block th:each="hall : ${halls}">-->
+<!--                <option th:value="${hall.id}"-->
+<!--                        th:text="${hall.name + ' (' + (hall.cinema != null ? hall.cinema.name : 'No Cinema') + ')'}">-->
+<!--                </option>-->
+<!--            </th:block>-->
+<!--        </select>-->
 
         <!-- Start Time -->
         <label for="startTime">Start Time</label>

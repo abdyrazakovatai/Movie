@@ -5,6 +5,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -23,14 +24,15 @@ public class Showtime {
     LocalDateTime startTime;
     Double price;
 
-    @OneToMany(mappedBy = "showtime")
-    List<Ticket> tickets;
+    @ToString.Exclude
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "showtime",cascade = CascadeType.PERSIST, orphanRemoval = true)
+    List<Ticket> tickets = new ArrayList<>();
 
     @ManyToOne
     Movie movie;
 
     @ToString.Exclude
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})
     Hall hall;
 
     public Showtime(LocalDateTime startTime, Double price) {

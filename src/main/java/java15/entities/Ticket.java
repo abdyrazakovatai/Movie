@@ -22,6 +22,7 @@ public class Ticket {
     @ManyToOne
     User user;
 
-    @ManyToOne
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.EAGER)
     Showtime showtime;
 }

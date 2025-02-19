@@ -17,8 +17,6 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-
-
 public class ShowTimeServiceImpl implements ShowTimeService {
 
     private final ShowTimeRepository showTimeRepository;
@@ -108,7 +106,7 @@ public class ShowTimeServiceImpl implements ShowTimeService {
 //        movie.getShowTimes().add(showtime);
 //        hall.getShowTimes().add(showtime);
 
-        showTimeRepository.merge(showtime);
+        showTimeRepository.save(showtime);
     }
 
     @Override
@@ -130,7 +128,7 @@ public class ShowTimeServiceImpl implements ShowTimeService {
             throw new RuntimeException("Hall not found");
         }
         if (hall.getId() != null){
-            hallRepository.merge(hall);
+            hallRepository.save(hall);
         }
 
         Hibernate.initialize(hall.getShowTimes());
@@ -143,6 +141,11 @@ public class ShowTimeServiceImpl implements ShowTimeService {
         hall.setCinema(cinema);
 
         showTimeRepository.save(showtime);
+    }
+
+    @Override
+    public List<Showtime> findHallById(Long hallId) {
+        return showTimeRepository.findHallById(hallId);
     }
 
 }
