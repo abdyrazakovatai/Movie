@@ -20,6 +20,8 @@ public class ShowTimeRepositoryImpl implements ShowTimeRepository {
     @Override
     public void save(Showtime showtime) {
         em.persist(showtime);
+        em.flush();
+        em.clear();
     }
 
     public List<Showtime> getAll() {
@@ -28,9 +30,19 @@ public class ShowTimeRepositoryImpl implements ShowTimeRepository {
 
     @Override
     public Showtime findById(Long id) {
-        return em.createQuery("select st from Showtime st where st.id =: id", Showtime.class)
+        Showtime showtime = em.createQuery("select st from Showtime st where st.id =: id", Showtime.class)
                 .setParameter("id", id)
                 .getSingleResult();
+
+        showtime.getTickets().size();
+        return showtime;
+    }
+
+    @Override
+    public List<Showtime> findHallById(Long hallId) {
+        return em.createQuery("select st from Showtime st where st.hall.id =: hallId",Showtime.class)
+                .setParameter("hallId", hallId)
+                .getResultList();
     }
 
     @Override

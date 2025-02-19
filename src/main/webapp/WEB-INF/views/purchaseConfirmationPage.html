@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Подтверждение покупки</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        .details {
+            margin-bottom: 20px;
+        }
+
+        .details p {
+            font-size: 1em;
+            margin: 5px 0;
+        }
+
+        .footer {
+            text-align: center;
+        }
+
+        .footer a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            font-size: 1em;
+            color: #ffffff;
+            background-color: #4CAF50;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .footer a:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="details">
+            <p><strong>Купленные места:</strong> ${}</p>
+            <p><strong>Оставшийся баланс:</strong> ${} сом</p>
+        </div>
+        <div class="footer">
+            <a href="/users">Вернуться на главную</a>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

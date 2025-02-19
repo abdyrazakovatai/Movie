@@ -24,7 +24,7 @@ public class HallServiceImpl implements HallService {
 
     @Override
     public void merge(Hall hall) {
-        hallRepository.merge(hall);
+        hallRepository.save(hall);
     }
 
     @Override

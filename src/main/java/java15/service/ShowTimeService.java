@@ -22,6 +22,8 @@ public interface ShowTimeService {
 
     void saveShowTime(Long cinemaId,Long movieId, Long hallId,Showtime showtime);
 
+    List<Showtime> findHallById(Long hallId);
+
 //    void saveShowTime(Long movieId, Long cinemaId, Long hallId,Showtime showtime);
 }
 

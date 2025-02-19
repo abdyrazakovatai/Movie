@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ShowTimes</title>
+</head>
+<style>
+  /* Контейнер для карточек */
+  .showtime-cards {
+    display: flex; /* Включаем Flexbox */
+    flex-wrap: wrap; /* Разрешаем перенос строк, если карточек много */
+    gap: 20px; /* Расстояние между карточками */
+    justify-content: center; /* Выравнивание карточек по центру */
+    padding: 20px; /* Отступы от краев контейнера */
+  }
+
+  /* Карточка шоу */
+  .showtime-card {
+    border-radius: 10px;
+    width: 200px; /* Фиксированный размер карточек */
+    padding: 15px;
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+    transition: transform 0.2s;
+  }
+
+  .showtime-card:hover {
+    transform: scale(1.05); /* Увеличение при наведении */
+  }
+
+  /* Изображение в карточке */
+  .showtime-card img {
+    width: 100%; /* Изображение адаптируется под ширину карточки */
+    height: auto; /* Автоматическая высота для сохранения пропорций */
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+
+  /* Заголовок фильма */
+  .showtime-card h3 {
+    font-size: 16px; /* Размер шрифта заголовка */
+    margin-bottom: 5px;
+  }
+
+  /* Ссылки */
+  .showtime-card a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background: linear-gradient(45deg, #000000, #000000);
+    color: #fff;
+    text-decoration: none;
+    font-size: 12px;
+    border-radius: 5px;
+    transition: background 0.3s;
+  }
+
+  .showtime-card a:hover {
+    /*background: linear-gradient(45deg, #e67e22, #c0392b);*/
+  }
+</style>
+<body>
+
+<div class="showtime-cards">
+  <div th:each="showtime : ${showTimes}" class="showtime-card">
+    <a th:href="@{/users/showTimeDetails(id=${showtime.id})}" class="showtime-link">
+      <img th:src="${showtime.movie.image}" alt="Movie Image" class="showtime-image"/>
+      <h3 th:text="${showtime.movie.movieName}"></h3>
+    </a>
+  </div>
+</div>
+
+</body>
+</html>

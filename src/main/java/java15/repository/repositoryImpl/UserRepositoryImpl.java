@@ -37,7 +37,26 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public void save(User user) {
-        em.persist(user);
+//        List<User> users = getAllUsers(); // Получаем всех пользователей
+//        // Проверяем, существует ли пользователь
+//        boolean userExists = users.stream().anyMatch(u -> u.equals(user));
+//
+//        if (userExists) {
+//            em.merge(user); // Обновляем существующего пользователя
+//        } else {
+//            em.persist(user); // Сохраняем нового пользователя
+//        }
+//        ~~~~~~~~~~~
+
+        User existingUser = em.find(User.class, user.getId());
+
+        if (existingUser != null) {
+            // Если пользователь существует, обновляем его
+            em.merge(user);
+        } else {
+            // Если пользователя нет, сохраняем нового
+            em.persist(user);
+        }
     }
 
     @Override

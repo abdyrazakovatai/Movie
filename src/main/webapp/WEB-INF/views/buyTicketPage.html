@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Buy Ticket</title>
+    <style>
+        .hall {
+            text-align: center;
+            margin: 20px auto;
+        }
+
+        .screen {
+            width: 80%;
+            height: 50px;
+            margin: 0 auto 20px auto;
+            background-color: #ddd;
+            border: 1px solid #000;
+            text-align: center;
+            line-height: 50px;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .seats {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .seatRow {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .seat {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            border: 2px solid #000;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .seat.taken {
+            background-color: #ff4d4d;
+            cursor: not-allowed;
+        }
+
+        .seat.available {
+            background-color: #4caf50;
+        }
+
+        .seat.selected {
+            background-color: #ffd700;
+        }
+
+        .buy-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .buy-button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .message {
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+
+        /*.message.success {*/
+        /*  color: green;*/
+        /*}*/
+
+        /*.message.error {*/
+        /*  color: red;*/
+        /*}*/
+
+        .message {
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+
+        .message.success {
+            color: green;
+        }
+
+        .message.error {
+            color: red;
+        }
+        .taken-seat {
+            background-color: red;
+            color: white;
+            cursor: not-allowed;
+        }
+
+        .available-seat {
+            background-color: green;
+            color: white;
+            cursor: pointer;
+        }
+
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const selectedSeats = new Set();
+            const seatButtons = document.querySelectorAll(".seat.available");
+            const pricePerTicket = parseFloat(document.getElementById("pricePerTicket").value);
+            const totalPriceElement = document.getElementById("totalPrice");
+            const buyButton = document.getElementById("buyButton");
+            const hiddenInput = document.getElementById("selectedSeats");
+
+            seatButtons.forEach(seat => {
+                seat.addEventListener("click", function () {
+                    const seatNumber = this.getAttribute("data-seat-number");
+                    if (this.classList.contains("selected")) {
+                        this.classList.remove("selected");
+                        selectedSeats.delete(seatNumber);
+                    } else {
+                        this.classList.add("selected");
+                        selectedSeats.add(seatNumber);
+                    }
+                    updatePrice();
+                    updateHiddenInput();
+                    toggleBuyButton();
+                });
+            });
+
+            function updatePrice() {
+                const totalPrice = selectedSeats.size * pricePerTicket;
+                totalPriceElement.textContent = `Общая стоимость: ${totalPrice.toFixed(2)} KGS`;
+            }
+
+            function updateHiddenInput() {
+                hiddenInput.value = Array.from(selectedSeats).join(",");
+            }
+
+            function toggleBuyButton() {
+                buyButton.disabled = selectedSeats.size === 0;
+            }
+
+            // Инициализируем начальные значения
+            updatePrice();
+            toggleBuyButton();
+        });
+    </script>
+</head>
+<body>
+<!-- Сообщение об успешной покупке или ошибке -->
+<div class="message" th:if="${message}" th:classappend="' success'" th:text="${message}"></div>
+<div class="message" th:if="${error}" th:classappend="' error'" th:text="${error}"></div>
+<div class="message" th:if="${remainingBalance != null}">
+        <a href="/users">Главную страницу</a>
+        <h2 th:text="'Остаток: ' + ${remainingBalance}"></h2>
+    </div>
+</div>
+<div class="hall">
+    <h2 th:text="'Зал: ' + ${hall.name}"></h2>
+    <h2 th:text="'Фильм: ' + ${showtime.movie.movieName}"></h2>
+    <h2 th:text="'Время начала: ' + ${showtime.startTime}"></h2>
+    <h2 th:text="'Цена: ' + ${showtime.price} + ' KGS'"></h2>
+
+    <div class="screen">ЭКРАН</div>
+
+    <form action="/tickets/purchase" method="POST">
+<!--        ~~~~~~~~~~~~~~~~~~~~~~  -->
+        <div class="seats">
+            <div class="row" th:each="row : ${seatGrid}">
+                <div class="seatRow">
+                    <button type="button"
+                            th:each="ticket : ${row}"
+                            th:text="'Место ' + ${ticket.seatNumber}"
+                            th:classappend="${#lists.contains(takenSeats,ticket.seatNumber) ? 'taken' : 'available'}"
+                            th:disabled="${#lists.contains(takenSeats,ticket.seatNumber)}"
+                            th:attr="data-seat-number=${ticket.seatNumber}"
+                            class="seat"></button>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <p id="totalPrice">Общая стоимость: 0 KGS</p>
+        </div>
+
+                <input type="hidden" id="pricePerTicket" th:value="${showtime.price}">
+                <input type="hidden" name="showtimeId" th:value="${showtime.id}">
+                <input type="hidden" id="selectedSeats" name="selectedSeats" value="">
+
+        <button id="buyButton" class="buy-button" type="submit" disabled>Купить</button>
+<!--        ~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+    </form>
+
+</div>
+</body>
+</html>
